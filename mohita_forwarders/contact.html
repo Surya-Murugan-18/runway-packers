@@ -14,8 +14,6 @@
     <title>Runway Packers - Contact US</title>
     <link rel="icon" type="image/png" href="img/titlelogo.jpg" style="width: 300px;">
 
-
-
     <!-- Favicon -->
     <link rel="icon" href="img/favicon.png">
 
@@ -47,6 +45,11 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Added Leaflet CSS for OpenStreetMap -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
 
 </head>
 
@@ -152,7 +155,7 @@
 
 
         <!-- Breadcrumbs -->
-        <div class="breadcrumbs overlay" style="background: url('img/header-1.jpg') no-repeat center center/cover;">
+        <div class="breadcrumbs overlay" style="background: url('img/header-3.jpg') no-repeat center center/cover;">
             <div class="container">
                 <div class="bread-inner">
                     <div class="row">
@@ -177,9 +180,9 @@
         <div class="inner">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="contact-us-left">
+                    <div class="contact-us-left" style="padding-left: 20px;padding-top: 10px;padding-bottom: 10px;">
                         <!-- Start Leaflet Map -->
-                        <div id="myMap"></div>
+                        <div id="myMap" style="height: 600px; width: 100%;"></div>
                         <!--/ End Leaflet Map -->
                     </div>
                 </div>
@@ -243,14 +246,15 @@
                     </div>
                 </div>
                 <!--/End single-info -->
+                <!-- Updated location section to show both branches -->
                 <!-- single-info -->
                 <div class="col-lg-4 col-12">
                     <div class="single-info">
                         <i class="icofont-google-map"></i>
                         <div class="content">
                             <h3>Our Location</h3>
-                            <p> 11B - Raghavendra Road ,
-                             Puthagaram, Kolathur , Chennai - 600099</p>
+                            <p>Chennai - 600099</p>
+                            <p>Thanjavur - 613005</p>
                         </div>
                     </div>
                 </div>
@@ -258,7 +262,7 @@
                 <!-- single-info -->
                 <div class="col-lg-4 col-12">
                     <div class="single-info">
-                        <i class="icofont icofont-wall-clock"></i>
+                        <i class="icofont-clock-time"></i>
                         <div class="content">
                             <h3>Mon - Sat: 9 AM - 6 <center>PM</center></h3>
                           <center>  <p>Sunday Closed</p></center>
@@ -401,16 +405,54 @@
         <script src="js/jquery.magnific-popup.min.js"></script>
         <!-- Counter Up CDN JS -->
         <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-        <!-- Google Map API Key JS -->
-        <script src="https://maps.google.com/maps/api/js?key=AIzaSyDGqTyqoPIvYxhn_Sa7ZrK5bENUWhpCo0w"></script>
-        <!-- Gmaps JS -->
-        <script src="js/gmaps.min.js"></script>
-        <!-- Map Active JS -->
-        <script src="js/map-active.js"></script>
         <!-- Bootstrap JS -->
         <script src="js/bootstrap.min.js"></script>
         <!-- Main JS -->
         <script src="js/main.js"></script>
+
+        <!-- Leaflet JS -->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+        
+        <!-- Added custom map initialization script -->
+        <script>
+            // Initialize the map
+            var map = L.map('myMap').setView([13.0827, 80.2707], 10); // Centered between Chennai and Thanjavur
+
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Chennai Branch marker
+            var chennaiMarker = L.marker([13.1067, 80.2206]).addTo(map);
+            chennaiMarker.bindPopup(`
+                <div style="font-family: Arial, sans-serif; padding: 10px; min-width: 200px;">
+                    <h4 style="color: #17569B; margin: 0 0 10px 0; font-size: 16px;">Chennai Branch</h4>
+                    <p style="margin: 5px 0; font-size: 14px;"><strong>Address:</strong></p>
+                    <p style="margin: 5px 0; font-size: 13px; line-height: 1.4;">11B - Raghavendra Road, Vanashakthi Nagar Extn, Puthagaram, Kolathur, Chennai - 600099</p>
+                    <p style="margin: 5px 0; font-size: 14px;"><strong>Phone:</strong> +91 91768 67827</p>
+                    <p style="margin: 5px 0; font-size: 14px;"><strong>Email:</strong> runwaypackersandmovers@gmail.com</p>
+                </div>
+            `);
+
+            // Thanjavur Branch marker
+            var thanjavurMarker = L.marker([10.7870, 79.1378]).addTo(map);
+            thanjavurMarker.bindPopup(`
+                <div style="font-family: Arial, sans-serif; padding: 10px; min-width: 200px;">
+                    <h4 style="color: #17569B; margin: 0 0 10px 0; font-size: 16px;">Thanjavur Branch</h4>
+                    <p style="margin: 5px 0; font-size: 14px;"><strong>Address:</strong></p>
+                    <p style="margin: 5px 0; font-size: 13px; line-height: 1.4;">248 - Sai Kudil Ground Floor, 8th Cross Street, Ashok Nagar, Thanjavur - 613005</p>
+                    <p style="margin: 5px 0; font-size: 14px;"><strong>Phone:</strong> +91 97899 89120</p>
+                    <p style="margin: 5px 0; font-size: 14px;"><strong>Email:</strong> runwaypackersandmovers@gmail.com</p>
+                </div>
+            `);
+
+            // Adjust map view to show both markers
+            var group = new L.featureGroup([chennaiMarker, thanjavurMarker]);
+            map.fitBounds(group.getBounds().pad(0.1));
+        </script>
 </body>
 
 </html>
