@@ -1,0 +1,2655 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Runway Packers - Admin Dashboard</title>
+        <link rel="icon" type="image/png" href="img/titlelogo.jpg" style="width: 300px;">
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-blue: #17569B;
+            /* Runway Packers primary blue */
+            --secondary-blue: #3A75C4;
+            /* Slightly lighter blue for accents */
+            --light-blue: #E6F0FA;
+            /* Very light blue for backgrounds */
+            --dark-blue: #0F3C7B;
+            /* Darker blue for headers or text */
+            --accent-blue: #5B9DEF;
+            /* For highlights/buttons */
+            --pure-white: #ffffff;
+            --off-white: #f8fafc;
+            --light-gray: #f1f5f9;
+            --medium-gray: #e2e8f0;
+            --dark-gray: #64748b;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-light: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--off-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            z-index: 1000;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .sidebar-logo img {
+            width: 230px;
+            height: 60px;
+            border-radius: 8px;
+        }
+
+        .sidebar-logo h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .nav-section {
+            margin-bottom: 2rem;
+        }
+
+        .nav-section-title {
+            padding: 0 1.5rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.7;
+        }
+
+        .nav-item {
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-left-color: white;
+        }
+
+        .nav-icon {
+            width: 20px;
+            margin-right: 0.75rem;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+            background: var(--off-white);
+        }
+
+        /* Top Header */
+        .top-header {
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .page-subtitle {
+            color: var(--text-light);
+            margin: 0.25rem 0 0;
+            font-size: 0.875rem;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-menu {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: var(--light-gray);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .user-menu:hover {
+            background: var(--medium-gray);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .user-info h6 {
+            margin: 0;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .user-info small {
+            color: var(--text-light);
+            font-size: 0.75rem;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            z-index: 1000;
+        }
+
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background: var(--light-gray);
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: 2rem;
+        }
+
+        .tab-content-modern {
+            display: none;
+        }
+
+        .tab-content-modern.active {
+            display: block;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Modern Cards */
+        .modern-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .card-header-modern {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-light);
+            background: var(--light-gray);
+        }
+
+        .card-title-modern {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-subtitle-modern {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            margin: 0.25rem 0 0;
+        }
+
+        .card-body-modern {
+            padding: 2rem;
+        }
+
+        /* Forms */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .form-control {
+            padding: 0.75rem;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(255, 166, 0, 0.1);
+        }
+
+        /* Buttons */
+        .btn-modern {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            justify-content: center;
+        }
+
+        .btn-primary-modern {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-primary-modern:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary-modern {
+            background: var(--medium-gray);
+            color: var(--text-dark);
+        }
+
+        .btn-secondary-modern:hover {
+            background: var(--dark-gray);
+            color: white;
+        }
+
+        .btn-success-modern {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success-modern:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger-modern {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger-modern:hover {
+            background: #dc2626;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+        }
+
+        /* Tables */
+        .table-modern {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .table-modern th,
+        .table-modern td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.875rem;
+        }
+
+        .table-modern th {
+            background: var(--light-gray);
+            font-weight: 600;
+            color: var(--text-dark);
+            position: sticky;
+            top: 0;
+        }
+
+        .table-modern tbody tr:hover {
+            background: var(--light-gray);
+        }
+
+        /* Dimensions Container */
+        .dimensions-container {
+            background: var(--light-gray);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .dimension-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 100px 60px;
+            gap: 1rem;
+            align-items: end;
+            margin-bottom: 1rem;
+        }
+
+        .add-dimension-btn,
+        .remove-dimension-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .add-dimension-btn:hover {
+            background: var(--secondary-blue);
+        }
+
+        .remove-dimension-btn {
+            background: var(--danger);
+        }
+
+        .remove-dimension-btn:hover {
+            background: #dc2626;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: var(--light-gray);
+            color: var(--text-dark);
+        }
+
+        .success-icon {
+            color: var(--success);
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .booking-id-display {
+            background: var(--light-blue);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .booking-id-display h3 {
+            color: var(--primary-blue);
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        /* Orders Table Styles */
+        .orders-container {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .orders-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+            background: var(--light-gray);
+        }
+
+        .orders-filters {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-select,
+        .filter-input {
+            padding: 0.5rem;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.875rem;
+        }
+
+        .orders-table th {
+            background: var(--light-gray);
+            font-weight: 600;
+            color: var(--text-dark);
+            position: sticky;
+            top: 0;
+        }
+
+        .orders-table tbody tr:hover {
+            background: var(--light-gray);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-delivered {
+            background: #d1edff;
+            color: #0c5460;
+        }
+
+        .status-in_transit {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .status-picked_up {
+            background: #e2e3ff;
+            color: #383874;
+        }
+
+        .status-out_for_delivery {
+            background: #ffe2e5;
+            color: #58151c;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        /* Pagination */
+        .pagination-container {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .pagination button {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border-light);
+            background: white;
+            color: var(--text-dark);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .pagination button.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Dashboard improvements */
+        .recent-orders-table {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .dashboard-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Section Headers */
+        h5 {
+            color: var(--text-dark);
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Animations */
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 260px;
+            }
+
+            .main-content {
+                margin-left: 260px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dimension-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .orders-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group {
+                justify-content: space-between;
+            }
+
+            .orders-table {
+                font-size: 0.75rem;
+            }
+
+            .orders-table th,
+            .orders-table td {
+                padding: 0.5rem;
+            }
+
+            .content-area {
+                padding: 1rem;
+            }
+
+            .top-header {
+                padding: 1rem;
+            }
+
+            .page-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            .card-body-modern {
+                padding: 1rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Loading States */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--medium-gray);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-gray);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <img src="img/admin2.jpg" alt="Logo">
+                <h3>Admin Dashboard</h3>
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Main</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link active" data-tab="dashboard">
+                        <div class="nav-icon"><i class="fas fa-chart-line"></i></div>
+                        Dashboard
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-tab="orders">
+                        <div class="nav-icon"><i class="fas fa-list-alt"></i></div>
+                        Orders
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-tab="user-master">
+                        <div class="nav-icon"><i class="fas fa-users"></i></div>
+                        User Master
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-tab="booking-entry">
+                        <div class="nav-icon"><i class="fas fa-plus-circle"></i></div>
+                        Booking Entry
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-tab="status-update">
+                        <div class="nav-icon"><i class="fas fa-edit"></i></div>
+                        Status Update
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-tab="pod-upload">
+                        <div class="nav-icon"><i class="fas fa-upload"></i></div>
+                        POD Upload
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-tab="booking-report">
+                        <div class="nav-icon"><i class="fas fa-file-alt"></i></div>
+                        Booking Report
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-content">
+                <div>
+                    <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                    <p class="page-subtitle" id="pageSubtitle">Welcome back! Here's what's happening with your bookings
+                        today.</p>
+                </div>
+
+                <div class="header-actions">
+                    <div class="user-menu" onclick="toggleUserDropdown()">
+                        <div class="user-avatar">A</div>
+                        <div class="user-info">
+                            <h6>Admin User</h6>
+                            <small>Administrator</small>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="login.html" class="dropdown-item" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Dashboard Tab -->
+            <div id="dashboard-content" class="tab-content-modern active">
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="totalBookingCount">0</div>
+                        <div class="stat-label">Total Booking</div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="totalDeliveryCount">0</div>
+                        <div class="stat-label">Total Delivery</div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="totalPendingCount">0</div>
+                        <div class="stat-label">Total Pending</div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Actions -->
+                <div class="dashboard-actions">
+                    <button class="btn-modern btn-primary-modern" onclick="exportRecentOrders()">
+                        <i class="fas fa-download"></i> Export Recent Orders
+                    </button>
+                    <button class="btn-modern btn-secondary-modern" onclick="refreshDashboard()">
+                        <i class="fas fa-refresh"></i> Refresh
+                    </button>
+                </div>
+
+                <!-- Recent Orders -->
+                <div class="modern-card">
+                    <div class="card-header-modern">
+                        <h3 class="card-title-modern">
+                            <i class="fas fa-clock"></i>
+                            Recent Orders
+                        </h3>
+                        <p class="card-subtitle-modern">Latest booking entries</p>
+                    </div>
+                    <div class="card-body-modern">
+                        <div class="recent-orders-table">
+                            <table class="table-modern">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Date</th>
+                                        <th>Source → Destination</th>
+                                        <th>Receiver</th>
+                                        <th>Status</th>
+                                        <th>Amount</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentOrdersList">
+                                    <!-- Recent orders will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Tab -->
+            <div id="orders-content" class="tab-content-modern">
+                <div class="orders-container">
+                    <div class="orders-header">
+                        <h3 class="card-title-modern">
+                            <i class="fas fa-list-alt"></i>
+                            Orders Management
+                        </h3>
+                        <div class="orders-filters">
+                            <div class="filter-group">
+                                <label>Status:</label>
+                                <select class="filter-select" id="statusFilter" onchange="loadOrders()">
+                                    <option value="all">All Orders</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="picked_up">Picked Up</option>
+                                    <option value="in_transit">In Transit</option>
+                                    <option value="out_for_delivery">Out for Delivery</option>
+                                    <option value="delivered">Delivered</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>Search:</label>
+                                <input type="text" class="filter-input" id="searchFilter"
+                                    placeholder="Search by ID, name..." onkeyup="debounceSearch()">
+                            </div>
+                            <div class="filter-group">
+                                <button class="btn-modern btn-success-modern" onclick="exportOrders()">
+                                    <i class="fas fa-file-excel"></i> Export Excel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="orders-table-container">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Date</th>
+                                    <th>Source → Destination</th>
+                                    <th>Sender</th>
+                                    <th>Receiver</th>
+                                    <th>Contact</th>
+                                    <th>Status</th>
+                                    <th>Amount</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                                <!-- Orders will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-container">
+                        <div class="pagination-info">
+                            <span id="paginationInfo">Showing 0 of 0 orders</span>
+                        </div>
+                        <div class="pagination" id="paginationControls">
+                            <!-- Pagination buttons will be generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Master Tab -->
+            <div id="user-master-content" class="tab-content-modern">
+                <div class="modern-card">
+                    <div class="card-header-modern">
+                        <h3 class="card-title-modern">
+                            <i class="fas fa-user-plus"></i>
+                            Add New User
+                        </h3>
+                    </div>
+                    <div class="card-body-modern">
+                        <form id="userForm" onsubmit="addUser(event)" enctype="multipart/form-data">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="userName">Name</label>
+                                    <input type="text" class="form-control" id="userName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userPassword">Password</label>
+                                    <input type="password" class="form-control" id="userPassword" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-modern btn-primary-modern">
+                                <i class="fas fa-save"></i> Save
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modern-card">
+                    <div class="card-header-modern">
+                        <h3 class="card-title-modern">
+                            <i class="fas fa-users"></i>
+                            User List
+                        </h3>
+                    </div>
+                    <div class="card-body-modern">
+                        <table class="table-modern">
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>Password</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersList">
+                                <!-- Users will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Entry Tab -->
+            <div id="booking-entry-content" class="tab-content-modern">
+                <div class="modern-card">
+                    <div class="card-header-modern">
+                        <h3 class="card-title-modern">
+                            <i class="fas fa-plus-circle"></i>
+                            New Booking Entry
+                        </h3>
+                    </div>
+                    <div class="card-body-modern">
+                        <form id="bookingForm" onsubmit="saveBooking(event)" enctype="multipart/form-data">
+                            <!-- General Information -->
+                            <h5><i class="fas fa-info-circle"></i> General Information</h5>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="bookingId">CD NO.</label>
+                                    <input type="text" class="form-control" id="bookingId" name="bookingId" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bookingDate">Date of Booking</label>
+                                    <input type="date" class="form-control" id="bookingDate" name="bookingDate"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="source">Origin</label>
+                                    <input type="text" class="form-control" id="source" name="source" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="destination">Destination</label>
+                                    <input type="text" class="form-control" id="destination" name="destination"
+                                        required>
+                                </div>
+                            </div>
+
+                            <!-- Sender Details -->
+                            <h5><i class="fas fa-user"></i> Sender Details (Consignor)</h5>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="senderName">Shipper Name</label>
+                                    <input type="text" class="form-control" id="senderName" name="senderName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="senderAddress1">Address 1</label>
+                                    <input type="text" class="form-control" id="senderAddress1" name="senderAddress1"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="senderAddress2">Address 2</label>
+                                    <input type="text" class="form-control" id="senderAddress2" name="senderAddress2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="senderContact">Contact No.</label>
+                                    <input type="tel" class="form-control" id="senderContact" name="senderContact"
+                                        required>
+                                </div>
+
+                            </div>
+
+                            <!-- Receiver Details -->
+                            <h5><i class="fas fa-user-friends"></i> Receiver Details (Consignee)</h5>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="receiverCompany">Company Name</label>
+                                    <input type="text" class="form-control" id="receiverCompany" name="receiverCompany">
+                                </div>
+                                <div class="form-group">
+                                    <label for="receiverName">Receiver Name</label>
+                                    <input type="text" class="form-control" id="receiverName" name="receiverName"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="receiverAddress1">Address 1</label>
+                                    <input type="text" class="form-control" id="receiverAddress1"
+                                        name="receiverAddress1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="receiverAddress2">Address 2</label>
+                                    <input type="text" class="form-control" id="receiverAddress2"
+                                        name="receiverAddress2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="receiverPincode">Pin Code</label>
+                                    <input type="text" class="form-control" id="receiverPincode" name="receiverPincode"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="receiverContact">Contact No.</label>
+                                    <input type="tel" class="form-control" id="receiverContact" name="receiverContact"
+                                        required>
+                                </div>
+
+
+                            </div>
+
+                            <!-- Additional Info -->
+                            <h5><i class="fas fa-info"></i> Additional Info</h5>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="receivedGoodCondition" name="receivedGoodCondition"
+                                            checked>
+                                        Received Consignment in Good Condition
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bookingMode">Booking Mode</label>
+                                    <select class="form-control" id="bookingMode" name="bookingMode" required>
+                                        <option value="">Select Mode</option>
+                                        <option value="By Air">By Air</option>
+                                        <option value="By Train">By Train</option>
+                                        <option value="By Road">By Road</option>
+                                        <option value="By Road">Others</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="declaredValue">Declared Value (₹)</label>
+                                    <input type="number" class="form-control" id="declaredValue" name="declaredValue"
+                                        step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label for="invoiceNo">Invoice No.</label>
+                                    <input type="text" class="form-control" id="invoiceNo" name="invoiceNo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="natureContent">Nature of Content</label>
+                                    <input type="text" class="form-control" id="natureContent" name="natureContent"
+                                        placeholder="Type nature of content" maxlength="200" required>
+                                    <small class="form-text text-muted">Maximum 200 characters.</small>
+                                </div>
+
+                            </div>
+
+                            <!-- Package Info -->
+                            <!---         <h5><i class="fas fa-box"></i> Package Info</h5>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="noPackets">No. of Packets</label>
+                                    <input type="number" class="form-control" id="noPackets" name="noPackets" required
+                                        min="1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="packingType">Packing Type</label>
+                                    <select class="form-control" id="packingType" name="packingType" required>
+                                        <option value="">Select Packing Type</option>
+                                        <option value="Cotton Box">Cotton Box</option>
+                                        <option value="Thermocol Box">Thermocol Box</option>
+                                        <option value="Gunny Bag">Gunny Bag</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="actualWeight">Actual Weight (kg)</label>
+                                    <input type="number" class="form-control" id="actualWeight" name="actualWeight"
+                                        required step="0.01" oninput="calculateChargedWeight()">
+                                </div>
+                            </div>
+
+                            Dimensions Section 
+                            <h5><i class="fas fa-ruler-combined"></i> Dimensions (Length × Breadth × Height / 6000)</h5>
+                            <div class="dimensions-container">
+                                <div id="dimensionsContainer">
+                                    <div class="dimension-row">
+                                        <div class="form-group">
+                                            <label>Length (cm)</label>
+                                            <input type="number" class="form-control dimension-length"
+                                                name="dimension_length[]" step="0.01"
+                                                oninput="calculateChargedWeight()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Breadth (cm)</label>
+                                            <input type="number" class="form-control dimension-breadth"
+                                                name="dimension_breadth[]" step="0.01"
+                                                oninput="calculateChargedWeight()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Height (cm)</label>
+                                            <input type="number" class="form-control dimension-height"
+                                                name="dimension_height[]" step="0.01"
+                                                oninput="calculateChargedWeight()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Quantity</label>
+                                            <input type="number" class="form-control dimension-quantity"
+                                                name="dimension_quantity[]" min="1" value="1"
+                                                oninput="calculateChargedWeight()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>&nbsp;</label>
+                                            <button type="button" class="add-dimension-btn" onclick="addDimensionRow()">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chargedWeight">Charged Weight (kg)</label>
+                                    <input type="number" class="form-control" id="chargedWeight" name="chargedWeight"
+                                        readonly step="0.01">
+                                </div>
+                            </div>  -->
+
+                            <!-- Charges -->
+                            <h5><i class="fas fa-rupee-sign"></i> Charges (Paid in ₹)</h5>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="freight">Freight</label>
+                                    <input type="number" class="form-control" id="freight" name="freight" step="0.01"
+                                        oninput="calculateTotal()">
+                                </div>
+                                <div class="form-group">
+                                    <label for="docketCharges">Docket Charges</label>
+                                    <input type="number" class="form-control" id="docketCharges" name="docketCharges"
+                                        step="0.01" oninput="calculateTotal()">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fov">FOV</label>
+                                    <input type="number" class="form-control" id="fov" name="fov" step="0.01"
+                                        oninput="calculateTotal()">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dodCodCharges">D.O.D/C.O.D Charges</label>
+                                    <input type="number" class="form-control" id="dodCodCharges" name="dodCodCharges"
+                                        step="0.01" oninput="calculateTotal()">
+                                </div>
+                                <div class="form-group">
+                                    <label for="odaMiscCharges">ODA/Misc Charges</label>
+                                    <input type="number" class="form-control" id="odaMiscCharges" name="odaMiscCharges"
+                                        step="0.01" oninput="calculateTotal()">
+                                </div>
+                                <div class="form-group">
+                                    <label for="gstServiceTax">GST/Service Tax</label>
+                                    <input type="number" class="form-control" id="gstServiceTax" name="gstServiceTax"
+                                        step="0.01" oninput="calculateTotal()">
+                                </div>
+                                <div class="form-group">
+                                    <label for="grandTotal">Grand Total</label>
+                                    <input type="number" class="form-control" id="grandTotal" name="grandTotal" readonly
+                                        step="0.01">
+                                </div>
+                            </div>
+
+                            <!-- Signatures & Agreement -->
+                            <h5><i class="fas fa-signature"></i> Signatures & Agreement</h5>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="bookingClerkName">Booking Clerk Name</label>
+                                    <input type="text" class="form-control" id="bookingClerkName"
+                                        name="bookingClerkName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="codDodAmount">COD/DOD Amount</label>
+                                    <input type="number" class="form-control" id="codDodAmount" name="codDodAmount"
+                                        step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="termsAgreed" name="termsAgreed">
+                                        I/We agree to the Terms & Conditions set for this waybill
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-modern btn-primary-modern">
+                                <i class="fas fa-save"></i> Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Update Tab -->
+            <div id="status-update-content" class="tab-content-modern">
+                <div class="modern-card">
+                    <div class="card-header-modern">
+                        <h3 class="card-title-modern">
+                            <i class="fas fa-edit"></i>
+                            Update Order Status
+                        </h3>
+                    </div>
+                    <div class="card-body-modern">
+                        <form id="statusUpdateForm" onsubmit="updateStatus(event)">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="statusBookingId">Enter ID No.</label>
+                                    <input type="text" class="form-control" id="statusBookingId" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="statusDate">Status Date</label>
+                                    <input type="date" class="form-control" id="statusDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="statusTime">Status Time</label>
+                                    <input type="time" class="form-control" id="statusTime" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="statusSelect">Status</label>
+                                    <select class="form-control" id="statusSelect" required>
+                                        <option value="">Select Status</option>
+                                        <option value="picked_up">Picked Up</option>
+                                        <option value="in_transit">In Transit</option>
+                                        <option value="out_for_delivery">Out for Delivery</option>
+                                        <option value="delivered">Delivered</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="statusRemarks">Remarks</label>
+                                    <textarea class="form-control" id="statusRemarks" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="statusReceiverName">Receiver Name</label>
+                                    <input type="text" class="form-control" id="statusReceiverName">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-modern btn-primary-modern">
+                                <i class="fas fa-save"></i> Save
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POD Upload Tab -->
+            <div id="pod-upload-content" class="tab-content-modern">
+                <div class="modern-card">
+                    <div class="card-header-modern">
+                        <h3 class="card-title-modern">
+                            <i class="fas fa-upload"></i>
+                            POD Upload
+                        </h3>
+                    </div>
+                    <div class="card-body-modern">
+                        <form id="podUploadForm" onsubmit="uploadPOD(event)">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="podBookingId">Enter ID No.</label>
+                                    <input type="text" class="form-control" id="podBookingId" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="podFile">Choose File (Upload POD Proof Image)</label>
+                                    <input type="file" class="form-control" id="podFile" accept="image/*,.pdf" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-modern btn-primary-modern">
+                                <i class="fas fa-save"></i> Save
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Report Tab -->
+            <div id="booking-report-content" class="tab-content-modern">
+                <div class="modern-card">
+                    <div class="card-header-modern">
+                        <h3 class="card-title-modern">
+                            <i class="fas fa-file-alt"></i>
+                            Booking Report
+                        </h3>
+                    </div>
+                    <div class="card-body-modern">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="reportFromDate">From Date</label>
+                                <input type="date" class="form-control" id="reportFromDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="reportToDate">To Date</label>
+                                <input type="date" class="form-control" id="reportToDate">
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <button class="btn-modern btn-primary-modern" onclick="showReport()">
+                                <i class="fas fa-search"></i> Show
+                            </button>
+                            <button class="btn-modern btn-success-modern" onclick="downloadReport()">
+                                <i class="fas fa-download"></i> Download Excel
+                            </button>
+                        </div>
+                        <div id="reportResults" style="display: none;">
+                            <table class="table-modern">
+                                <thead>
+                                    <tr>
+                                        <th>ID No</th>
+                                        <th>Booking Date</th>
+                                        <th>Source</th>
+                                        <th>Destination</th>
+                                        <th>Sender Name</th>
+                                        <th>Receiver Name</th>
+                                        <th>Contact</th>
+                                        <th>Packing</th>
+                                        <th>Description</th>
+                                        <th>Status</th>
+                                        <th>Amount</th>
+                                        <th>Delivered Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reportTableBody">
+                                    <!-- Report data will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Booking Successful!</h3>
+                <button class="modal-close" onclick="closeModal('successModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="booking-id-display">
+                    <p>Your booking has been created successfully!</p>
+                    <h3 id="modalBookingId">-</h3>
+                </div>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button class="btn-modern btn-primary-modern" onclick="downloadBill()" id="downloadBillBtn">
+                        <i class="fas fa-download"></i> Download Bill
+                    </button>
+                    <button class="btn-modern btn-secondary-modern" onclick="closeModal('successModal')"
+                        style="margin-left: 1rem;">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Order Modal -->
+    <div class="modal-overlay" id="editOrderModal">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <h3 class="modal-title">Edit Order</h3>
+                <button class="modal-close" onclick="closeModal('editOrderModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editOrderForm" onsubmit="updateOrder(event)">
+                    <input type="hidden" id="editBookingId" name="booking_id">
+
+                    <!-- General Information -->
+                    <h5><i class="fas fa-info-circle"></i> General Information</h5>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editSource">Source</label>
+                            <input type="text" class="form-control" id="editSource" name="source">
+                        </div>
+                        <div class="form-group">
+                            <label for="editDestination">Destination</label>
+                            <input type="text" class="form-control" id="editDestination" name="destination">
+                        </div>
+                        <div class="form-group">
+                            <label for="editBookingMode">Booking Mode</label>
+                            <select class="form-control" id="editBookingMode" name="booking_mode">
+                                <option value="">Select Mode</option>
+                                <option value="By Air">By Air</option>
+                                <option value="By Train">By Train</option>
+                                <option value="By Road">By Road</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editNatureContent">Nature of Content</label>
+                            <select class="form-control" id="editNatureContent" name="nature_content">
+                                <option value="Accepted">Accepted</option>
+                                <option value="Cotton Box">Cotton Box</option>
+                                <option value="Thermocol Box">Thermocol Box</option>
+                                <option value="Gunny Bag">Gunny Bag</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Sender & Receiver Details -->
+                    <h5><i class="fas fa-users"></i> Contact Details</h5>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editSenderName">Sender Name</label>
+                            <input type="text" class="form-control" id="editSenderName" name="sender_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="editReceiverName">Receiver Name</label>
+                            <input type="text" class="form-control" id="editReceiverName" name="receiver_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="editReceiverContact">Receiver Contact</label>
+                            <input type="text" class="form-control" id="editReceiverContact" name="receiver_contact">
+                        </div>
+                        <div class="form-group">
+                            <label for="editDeclaredValue">Declared Value (₹)</label>
+                            <input type="number" class="form-control" id="editDeclaredValue" name="declared_value"
+                                step="0.01">
+                        </div>
+                    </div>
+
+                    <!-- Package Information -->
+                    <h5><i class="fas fa-box"></i> Package Information</h5>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editNoPackets">No. of Packets</label>
+                            <input type="number" class="form-control" id="editNoPackets" name="no_packets" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="editPackingType">Packing Type</label>
+                            <select class="form-control" id="editPackingType" name="packing_type">
+                                <option value="">Select Packing Type</option>
+                                <option value="Cotton Box">Cotton Box</option>
+                                <option value="Thermocol Box">Thermocol Box</option>
+                                <option value="Gunny Bag">Gunny Bag</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editActualWeight">Actual Weight (kg)</label>
+                            <input type="number" class="form-control" id="editActualWeight" name="actual_weight"
+                                step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="editChargedWeight">Charged Weight (kg)</label>
+                            <input type="number" class="form-control" id="editChargedWeight" name="charged_weight"
+                                step="0.01">
+                        </div>
+                    </div>
+
+                    <!-- Charges -->
+                    <h5><i class="fas fa-rupee-sign"></i> Charges</h5>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editFreight">Freight</label>
+                            <input type="number" class="form-control" id="editFreight" name="freight" step="0.01"
+                                oninput="calculateEditTotal()">
+                        </div>
+                        <div class="form-group">
+                            <label for="editDocketCharges">Docket Charges</label>
+                            <input type="number" class="form-control" id="editDocketCharges" name="docket_charges"
+                                step="0.01" oninput="calculateEditTotal()">
+                        </div>
+                        <div class="form-group">
+                            <label for="editFov">FOV</label>
+                            <input type="number" class="form-control" id="editFov" name="fov" step="0.01"
+                                oninput="calculateEditTotal()">
+                        </div>
+                        <div class="form-group">
+                            <label for="editDodCodCharges">D.O.D/C.O.D Charges</label>
+                            <input type="number" class="form-control" id="editDodCodCharges" name="dod_cod_charges"
+                                step="0.01" oninput="calculateEditTotal()">
+                        </div>
+                        <div class="form-group">
+                            <label for="editOdaMiscCharges">ODA/Misc Charges</label>
+                            <input type="number" class="form-control" id="editOdaMiscCharges" name="oda_misc_charges"
+                                step="0.01" oninput="calculateEditTotal()">
+                        </div>
+                        <div class="form-group">
+                            <label for="editGstServiceTax">GST/Service Tax</label>
+                            <input type="number" class="form-control" id="editGstServiceTax" name="gst_service_tax"
+                                step="0.01" oninput="calculateEditTotal()">
+                        </div>
+                        <div class="form-group">
+                            <label for="editGrandTotal">Grand Total</label>
+                            <input type="number" class="form-control" id="editGrandTotal" name="grand_total" readonly
+                                step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="editInvoiceNo">Invoice No.</label>
+                            <input type="text" class="form-control" id="editInvoiceNo" name="invoice_no">
+                        </div>
+                        <div class="form-group">
+                            <label for="editBookingClerkName">Booking Clerk Name</label>
+                            <input type="text" class="form-control" id="editBookingClerkName" name="booking_clerk_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="editCodDodAmount">COD/DOD Amount</label>
+                            <input type="number" class="form-control" id="editCodDodAmount" name="cod_dod_amount"
+                                step="0.01">
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <button type="submit" class="btn-modern btn-primary-modern">
+                            <i class="fas fa-save"></i> Update Order
+                        </button>
+                        <button type="button" class="btn-modern btn-secondary-modern"
+                            onclick="closeModal('editOrderModal')" style="margin-left: 1rem;">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Global variables
+        let totalBooking = 0;
+        let totalDelivery = 0;
+        let totalPending = 0;
+        let currentPage = 1;
+        let searchTimeout;
+        let currentBookingId = '';
+
+        // Initialize the dashboard
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeNavigation();
+            loadDashboard();
+            setCurrentDate();
+            loadUsers();
+
+            // Set current date and time for status update
+            const today = new Date();
+            document.getElementById('statusDate').value = today.toISOString().split('T')[0];
+            document.getElementById('statusTime').value = today.toTimeString().slice(0, 5);
+        });
+
+        // Initialize navigation
+        function initializeNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const tabContents = document.querySelectorAll('.tab-content-modern');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Remove active class from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+
+                    // Add active class to clicked link
+                    this.classList.add('active');
+
+                    // Hide all tab contents
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        content.style.display = 'none';
+                    });
+
+                    // Show selected tab content
+                    const tabId = this.getAttribute('data-tab') + '-content';
+                    const targetTab = document.getElementById(tabId);
+                    if (targetTab) {
+                        targetTab.style.display = 'block';
+                        targetTab.classList.add('active');
+                    }
+
+                    // Update page title
+                    updatePageTitle(this.getAttribute('data-tab'));
+
+                    // Load specific tab data
+                    if (this.getAttribute('data-tab') === 'orders') {
+                        loadOrders();
+                    }
+                });
+            });
+
+            // Show dashboard by default
+            document.getElementById('dashboard-content').style.display = 'block';
+        }
+
+        // Update page title based on active tab
+        function updatePageTitle(tab) {
+            const titles = {
+                'dashboard': 'Dashboard',
+                'orders': 'Orders Management',
+                'user-master': 'User Master',
+                'booking-entry': 'Booking Entry',
+                'status-update': 'Status Update',
+                'pod-upload': 'POD Upload',
+                'booking-report': 'Booking Report'
+            };
+            const subtitles = {
+                'dashboard': 'Welcome back! Here\'s what\'s happening with your bookings today.',
+                'orders': 'Manage all your booking orders in one place.',
+                'user-master': 'Manage system users and access control.',
+                'booking-entry': 'Create new booking entries for shipments.',
+                'status-update': 'Update the status of existing bookings.',
+                'pod-upload': 'Upload proof of delivery documents.',
+                'booking-report': 'Generate and download booking reports.'
+            };
+
+            document.getElementById('pageTitle').textContent = titles[tab] || 'Dashboard';
+            document.getElementById('pageSubtitle').textContent = subtitles[tab] || '';
+        }
+
+        // Load dashboard data
+        function loadDashboard() {
+            fetch('backend/dashboard.php')
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return res.text();
+                })
+                .then(text => {
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.success) {
+                            document.getElementById('totalBookingCount').innerText = data.total || 0;
+                            document.getElementById('totalDeliveryCount').innerText = data.delivered || 0;
+                            document.getElementById('totalPendingCount').innerText = data.pending || 0;
+
+                            // Load recent orders
+                            loadRecentOrders(data.recent || []);
+                        } else {
+                            console.error('Dashboard API error:', data.error);
+                            // Set default values
+                            document.getElementById('totalBookingCount').innerText = '0';
+                            document.getElementById('totalDeliveryCount').innerText = '0';
+                            document.getElementById('totalPendingCount').innerText = '0';
+                        }
+                    } catch (e) {
+                        console.error('JSON Parse Error:', e);
+                        console.error('Response text:', text);
+                        // Set default values on error
+                        document.getElementById('totalBookingCount').innerText = '0';
+                        document.getElementById('totalDeliveryCount').innerText = '0';
+                        document.getElementById('totalPendingCount').innerText = '0';
+                    }
+                })
+                .catch(err => {
+                    console.error('Dashboard load error:', err);
+                    // Set default values on error
+                    document.getElementById('totalBookingCount').innerText = '0';
+                    document.getElementById('totalDeliveryCount').innerText = '0';
+                    document.getElementById('totalPendingCount').innerText = '0';
+                });
+        }
+
+        // Load recent orders
+        function loadRecentOrders(orders) {
+            const recentOrdersList = document.getElementById('recentOrdersList');
+
+            if (!orders || orders.length === 0) {
+                recentOrdersList.innerHTML = '<tr><td colspan="7" class="text-center">No recent orders found.</td></tr>';
+                return;
+            }
+
+            let html = '';
+            orders.forEach(order => {
+                const status = order.status || 'pending';
+                const grandTotal = parseFloat(order.grand_total || 0);
+
+                html += `<tr>
+                    <td><strong>${order.id_no}</strong></td>
+                    <td>${order.booking_date}</td>
+                    <td>${order.source} → ${order.destination}</td>
+                    <td>${order.receiver_name}</td>
+                    <td><span class="status-badge status-${status}">${status.replace('_', ' ')}</span></td>
+                    <td>₹${grandTotal.toFixed(2)}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-modern btn-primary-modern btn-sm" onclick="editOrder('${order.id_no}')" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-modern btn-success-modern btn-sm" onclick="downloadOrderBill('${order.id_no}')" title="Download Bill">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>`;
+            });
+            recentOrdersList.innerHTML = html;
+        }
+
+        // Load orders for orders tab
+        function loadOrders(page = 1) {
+            const status = document.getElementById('statusFilter').value;
+            const search = document.getElementById('searchFilter').value;
+
+            fetch(`backend/orders.php?action=list&status=${status}&search=${encodeURIComponent(search)}&page=${page}`)
+                .then(res => res.text())
+                .then(text => {
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.success) {
+                            loadOrdersTable(data.orders || []);
+                            updatePagination(data.page || 1, data.pages || 1, data.total || 0);
+                        }
+                    } catch (e) {
+                        console.error('JSON Parse Error in loadOrders:', e);
+                        console.error('Response text:', text);
+                    }
+                })
+                .catch(err => console.error('Orders load error:', err));
+        }
+
+        // Load orders table
+        function loadOrdersTable(orders) {
+            const ordersTableBody = document.getElementById('ordersTableBody');
+
+            if (!orders || orders.length === 0) {
+                ordersTableBody.innerHTML = '<tr><td colspan="9" class="text-center">No orders found.</td></tr>';
+                return;
+            }
+
+            let html = '';
+            orders.forEach(order => {
+                const status = order.status || 'pending';
+                const grandTotal = parseFloat(order.grand_total || 0);
+
+                html += `<tr>
+                    <td><strong>${order.booking_id}</strong></td>
+                    <td>${order.booking_date}</td>
+                    <td>${order.source} → ${order.destination}</td>
+                    <td>${order.sender_name}</td>
+                    <td>${order.receiver_name}</td>
+                    <td>${order.receiver_contact}</td>
+                    <td><span class="status-badge status-${status}">${status.replace('_', ' ')}</span></td>
+                    <td>₹${grandTotal.toFixed(2)}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-modern btn-primary-modern btn-sm" onclick="editOrder('${order.booking_id}')" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-modern btn-success-modern btn-sm" onclick="downloadOrderBill('${order.booking_id}')" title="Download Bill">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>`;
+            });
+            ordersTableBody.innerHTML = html;
+        }
+
+        // Update pagination
+        function updatePagination(currentPage, totalPages, totalRecords) {
+            const paginationInfo = document.getElementById('paginationInfo');
+            const paginationControls = document.getElementById('paginationControls');
+
+            paginationInfo.textContent = `Showing page ${currentPage} of ${totalPages} (${totalRecords} total orders)`;
+
+            let html = '';
+
+            // Previous button
+            html += `<button onclick="loadOrders(${currentPage - 1})" ${currentPage <= 1 ? 'disabled' : ''}>
+                <i class="fas fa-chevron-left"></i>
+            </button>`;
+
+            // Page numbers
+            for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
+                html += `<button onclick="loadOrders(${i})" ${i === currentPage ? 'class="active"' : ''}>${i}</button>`;
+            }
+
+            // Next button
+            html += `<button onclick="loadOrders(${currentPage + 1})" ${currentPage >= totalPages ? 'disabled' : ''}>
+                <i class="fas fa-chevron-right"></i>
+            </button>`;
+
+            paginationControls.innerHTML = html;
+        }
+
+        // Debounce search
+        function debounceSearch() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                loadOrders(1);
+            }, 500);
+        }
+
+        // Export orders
+        function exportOrders() {
+            const status = document.getElementById('statusFilter').value;
+            const search = document.getElementById('searchFilter').value;
+            window.open(`backend/orders.php?action=export&status=${status}&search=${encodeURIComponent(search)}`, '_blank');
+        }
+
+        // Export recent orders
+        function exportRecentOrders() {
+            window.open('backend/orders.php?action=export&status=all', '_blank');
+        }
+
+        // Refresh dashboard
+        function refreshDashboard() {
+            loadDashboard();
+        }
+
+        // Set current date
+        function setCurrentDate() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('bookingDate').value = today;
+        }
+
+        // Add dimension row with proper naming
+        function addDimensionRow() {
+            const container = document.getElementById('dimensionsContainer');
+            const newRow = document.createElement('div');
+            newRow.className = 'dimension-row';
+            newRow.innerHTML = `
+                <div class="form-group">
+                    <label>Length (cm)</label>
+                    <input type="number" class="form-control dimension-length" name="dimension_length[]" step="0.01" oninput="calculateChargedWeight()">
+                </div>
+                <div class="form-group">
+                    <label>Breadth (cm)</label>
+                    <input type="number" class="form-control dimension-breadth" name="dimension_breadth[]" step="0.01" oninput="calculateChargedWeight()">
+                </div>
+                <div class="form-group">
+                    <label>Height (cm)</label>
+                    <input type="number" class="form-control dimension-height" name="dimension_height[]" step="0.01" oninput="calculateChargedWeight()">
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" class="form-control dimension-quantity" name="dimension_quantity[]" min="1" value="1" oninput="calculateChargedWeight()">
+                </div>
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button type="button" class="remove-dimension-btn" onclick="removeDimensionRow(this)">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            `;
+            container.appendChild(newRow);
+        }
+
+        // Remove dimension row
+        function removeDimensionRow(button) {
+            const row = button.closest('.dimension-row');
+            row.remove();
+            calculateChargedWeight();
+        }
+
+        // Calculate charged weight
+        function calculateChargedWeight() {
+            const actualWeight = parseFloat(document.getElementById('actualWeight').value) || 0;
+            let totalVolumetricWeight = 0;
+
+            // Calculate volumetric weight from all dimension rows
+            const dimensionRows = document.querySelectorAll('.dimension-row');
+
+            dimensionRows.forEach(row => {
+                const length = parseFloat(row.querySelector('.dimension-length').value) || 0;
+                const breadth = parseFloat(row.querySelector('.dimension-breadth').value) || 0;
+                const height = parseFloat(row.querySelector('.dimension-height').value) || 0;
+                const quantity = parseFloat(row.querySelector('.dimension-quantity').value) || 1;
+
+                if (length && breadth && height) {
+                    const volumetricWeight = (length * breadth * height * quantity) / 6000;
+                    totalVolumetricWeight += volumetricWeight;
+                }
+            });
+
+            const chargedWeight = Math.max(actualWeight, totalVolumetricWeight);
+            document.getElementById('chargedWeight').value = chargedWeight.toFixed(2);
+        }
+
+        // Calculate total charges (removed subtotal)
+        function calculateTotal() {
+            const freight = parseFloat(document.getElementById('freight').value) || 0;
+            const docket = parseFloat(document.getElementById('docketCharges').value) || 0;
+            const fov = parseFloat(document.getElementById('fov').value) || 0;
+            const dod = parseFloat(document.getElementById('dodCodCharges').value) || 0;
+            const oda = parseFloat(document.getElementById('odaMiscCharges').value) || 0;
+            const gst = parseFloat(document.getElementById('gstServiceTax').value) || 0;
+
+            const grandTotal = freight + docket + fov + dod + oda + gst;
+
+            document.getElementById('grandTotal').value = grandTotal.toFixed(2);
+        }
+
+        // Calculate edit total charges
+        function calculateEditTotal() {
+            const freight = parseFloat(document.getElementById('editFreight').value) || 0;
+            const docket = parseFloat(document.getElementById('editDocketCharges').value) || 0;
+            const fov = parseFloat(document.getElementById('editFov').value) || 0;
+            const dod = parseFloat(document.getElementById('editDodCodCharges').value) || 0;
+            const oda = parseFloat(document.getElementById('editOdaMiscCharges').value) || 0;
+            const gst = parseFloat(document.getElementById('editGstServiceTax').value) || 0;
+
+            const grandTotal = freight + docket + fov + dod + oda + gst;
+
+            document.getElementById('editGrandTotal').value = grandTotal.toFixed(2);
+        }
+
+        // Save booking with modal popup
+        function saveBooking(event) {
+            event.preventDefault();
+            const form = document.getElementById('bookingForm');
+            const formData = new FormData(form);
+
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            submitBtn.disabled = true;
+
+            fetch('backend/booking.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.text())
+                .then(text => {
+                    try {
+                        const res = JSON.parse(text);
+                        if (res.success) {
+                            currentBookingId = res.booking_id;
+                            document.getElementById('modalBookingId').textContent = res.booking_id;
+                            showModal('successModal');
+                            form.reset();
+                            setCurrentDate();
+                            loadDashboard();
+                        } else {
+                            alert("Error: " + (res.error || "Unknown error"));
+                        }
+                    } catch (e) {
+                        console.error('JSON Parse Error in saveBooking:', e);
+                        console.error('Response text:', text);
+                        alert("Error: Invalid response from server");
+                    }
+                })
+                .catch(err => {
+                    console.error('Booking save error:', err);
+                    alert("Failed: " + err.message);
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
+        }
+
+        // Download bill from modal
+        function downloadBill() {
+            if (currentBookingId) {
+                window.open(`backend/generate_pdf.php?booking_id=${currentBookingId}`, '_blank');
+            }
+        }
+
+        // Download order bill - fixed function
+        function downloadOrderBill(bookingId) {
+            if (bookingId) {
+                window.open(`backend/generate_pdf.php?booking_id=${bookingId}`, '_blank');
+            } else {
+                alert('Booking ID not found');
+            }
+        }
+
+        // Show modal
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        // Close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Edit order
+        function editOrder(bookingId) {
+            fetch(`backend/orders.php?action=get&booking_id=${bookingId}`)
+                .then(res => res.text())
+                .then(text => {
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.success) {
+                            const booking = data.booking;
+                            document.getElementById('editBookingId').value = booking.booking_id;
+                            document.getElementById('editSource').value = booking.source || '';
+                            document.getElementById('editDestination').value = booking.destination || '';
+                            document.getElementById('editBookingMode').value = booking.booking_mode || '';
+                            document.getElementById('editNatureContent').value = booking.nature_content || '';
+                            document.getElementById('editSenderName').value = booking.sender_name || '';
+                            document.getElementById('editReceiverName').value = booking.receiver_name || '';
+                            document.getElementById('editReceiverContact').value = booking.receiver_contact || '';
+                            document.getElementById('editDeclaredValue').value = booking.declared_value || '';
+                            document.getElementById('editNoPackets').value = booking.no_packets || '';
+                            document.getElementById('editPackingType').value = booking.packing_type || '';
+                            document.getElementById('editActualWeight').value = booking.actual_weight || '';
+                            document.getElementById('editChargedWeight').value = booking.charged_weight || '';
+                            document.getElementById('editFreight').value = booking.freight || '';
+                            document.getElementById('editDocketCharges').value = booking.docket_charges || '';
+                            document.getElementById('editFov').value = booking.fov || '';
+                            document.getElementById('editDodCodCharges').value = booking.dod_cod_charges || '';
+                            document.getElementById('editOdaMiscCharges').value = booking.oda_misc_charges || '';
+                            document.getElementById('editGstServiceTax').value = booking.gst_service_tax || '';
+                            document.getElementById('editGrandTotal').value = booking.grand_total || '';
+                            document.getElementById('editInvoiceNo').value = booking.invoice_no || '';
+                            document.getElementById('editBookingClerkName').value = booking.booking_clerk_name || '';
+                            document.getElementById('editCodDodAmount').value = booking.cod_dod_amount || '';
+                            showModal('editOrderModal');
+                        } else {
+                            alert('Error: ' + data.error);
+                        }
+                    } catch (e) {
+                        console.error('JSON Parse Error in editOrder:', e);
+                        alert('Error: Invalid response from server');
+                    }
+                })
+                .catch(err => {
+                    console.error('Edit order error:', err);
+                    alert('Failed to load order details');
+                });
+        }
+
+        // Update order
+        function updateOrder(event) {
+            event.preventDefault();
+            const form = document.getElementById('editOrderForm');
+            const formData = new FormData(form);
+
+            fetch('backend/orders.php?action=update', {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.text())
+                .then(text => {
+                    try {
+                        const res = JSON.parse(text);
+                        if (res.success) {
+                            alert('Order updated successfully!');
+                            closeModal('editOrderModal');
+                            loadOrders(currentPage);
+                            loadDashboard();
+                        } else {
+                            alert('Error: ' + res.error);
+                        }
+                    } catch (e) {
+                        console.error('JSON Parse Error in updateOrder:', e);
+                        alert('Error: Invalid response from server');
+                    }
+                })
+                .catch(err => {
+                    console.error('Update order error:', err);
+                    alert('Update failed: ' + err.message);
+                });
+        }
+
+        // Update status
+        function updateStatus(event) {
+            event.preventDefault();
+            const data = new FormData();
+            data.append('id_no', document.getElementById('statusBookingId').value);
+            data.append('status_date', document.getElementById('statusDate').value);
+            data.append('status_time', document.getElementById('statusTime').value);
+            data.append('status', document.getElementById('statusSelect').value);
+            data.append('remarks', document.getElementById('statusRemarks').value);
+            data.append('receiver_name', document.getElementById('statusReceiverName').value);
+
+            fetch('backend/status.php', {
+                method: 'POST',
+                body: data
+            })
+                .then(res => res.text())
+                .then(text => {
+                    try {
+                        const response = JSON.parse(text);
+                        alert(response.message);
+                        if (response.success) {
+                            document.getElementById('statusUpdateForm').reset();
+                            const today = new Date();
+                            document.getElementById('statusDate').value = today.toISOString().split('T')[0];
+                            document.getElementById('statusTime').value = today.toTimeString().slice(0, 5);
+                            loadDashboard();
+                        }
+                    } catch (e) {
+                        console.error('JSON Parse Error in updateStatus:', e);
+                        alert('Error: Invalid response from server');
+                    }
+                })
+                .catch(err => {
+                    console.error('Status update error:', err);
+                    alert('Status update failed: ' + err.message);
+                });
+        }
+
+        // Upload POD
+        function uploadPOD(event) {
+            event.preventDefault();
+            const formData = new FormData();
+            formData.append('id_no', document.getElementById('podBookingId').value);
+            formData.append('pod_file', document.getElementById('podFile').files[0]);
+
+            fetch('backend/pod_upload.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.text())
+                .then(text => {
+                    try {
+                        const response = JSON.parse(text);
+                        if (response.success) {
+                            alert("POD uploaded successfully!");
+                            document.getElementById('podUploadForm').reset();
+                        } else {
+                            alert("Upload failed: " + response.message);
+                        }
+                    } catch (e) {
+                        console.error('JSON Parse Error in uploadPOD:', e);
+                        alert('Error: Invalid response from server');
+                    }
+                })
+                .catch(error => {
+                    console.error('POD upload error:', error);
+                    alert("Upload error: " + error.message);
+                });
+        }
+
+        // Show report - fixed function
+        function showReport() {
+            const fromDate = document.getElementById('reportFromDate').value;
+            const toDate = document.getElementById('reportToDate').value;
+
+            fetch(`backend/report.php?reportFromDate=${fromDate}&reportToDate=${toDate}`)
+                .then(res => res.text())
+                .then(text => {
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.success) {
+                            const table = document.getElementById('reportTableBody');
+                            table.innerHTML = '';
+
+                            if (data.data && data.data.length > 0) {
+                                data.data.forEach(row => {
+                                    const status = row.status || 'pending';
+                                    const grandTotal = parseFloat(row.grand_total || 0);
+
+                                    table.innerHTML += `<tr>
+                                        <td>${row.id_no}</td>
+                                        <td>${row.booking_date}</td>
+                                        <td>${row.source}</td>
+                                        <td>${row.destination}</td>
+                                        <td>${row.sender_name}</td>
+                                        <td>${row.receiver_name}</td>
+                                        <td>${row.receiver_contact}</td>
+                                        <td>${row.packing_type}</td>
+                                        <td>${row.nature_content}</td>
+                                        <td><span class="status-badge status-${status}">${status.replace('_', ' ')}</span></td>
+                                        <td>₹${grandTotal.toFixed(2)}</td>
+                                        <td>${row.delivered_date || '-'}</td>
+                                    </tr>`;
+                                });
+                            } else {
+                                table.innerHTML = '<tr><td colspan="12" class="text-center">No data found for the selected date range.</td></tr>';
+                            }
+
+                            document.getElementById('reportResults').style.display = 'block';
+                        } else {
+                            alert('Error loading report: ' + data.error);
+                        }
+                    } catch (e) {
+                        console.error('JSON Parse Error in showReport:', e);
+                        console.error('Response text:', text);
+                        alert('Error: Invalid response from server');
+                    }
+                })
+                .catch(err => {
+                    console.error('Report error:', err);
+                    alert('Failed to load report: ' + err.message);
+                });
+        }
+
+        // Download report
+        function downloadReport() {
+            const fromDate = document.getElementById('reportFromDate').value;
+            const toDate = document.getElementById('reportToDate').value;
+
+            if (!fromDate || !toDate) {
+                alert('Please select both from and to dates');
+                return;
+            }
+
+            window.open(`backend/report.php?reportFromDate=${fromDate}&reportToDate=${toDate}&download=1`, '_blank');
+        }
+
+        // User management functions
+        function addUser(e) {
+            e.preventDefault();
+            const name = document.getElementById('userName').value;
+            const pass = document.getElementById('userPassword').value;
+
+            fetch('backend/users.php?action=add', {
+                method: 'POST',
+                body: new URLSearchParams({ name, password: pass })
+            })
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return res.text();
+                })
+                .then(text => {
+                    try {
+                        const response = JSON.parse(text);
+                        if (response.success) {
+                            alert('User added successfully!');
+                            document.getElementById('userForm').reset();
+                            loadUsers();
+                        } else {
+                            alert('Error: ' + response.error);
+                        }
+                    } catch (e) {
+                        console.error('JSON Parse Error in addUser:', e);
+                        alert('Error: Invalid response from server');
+                    }
+                })
+                .catch(err => {
+                    console.error('Add user error:', err);
+                    alert('Failed to add user: ' + err.message);
+                });
+        }
+
+        function deleteUser(id) {
+            if (confirm('Are you sure you want to delete this user?')) {
+                fetch(`backend/users.php?action=delete&id=${id}`)
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return res.text();
+                    })
+                    .then(text => {
+                        try {
+                            const response = JSON.parse(text);
+                            if (response.success) {
+                                alert('User deleted successfully!');
+                                loadUsers();
+                            } else {
+                                alert('Error: ' + response.error);
+                            }
+                        } catch (e) {
+                            console.error('JSON Parse Error in deleteUser:', e);
+                            alert('Error: Invalid response from server');
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Delete user error:', err);
+                        alert('Failed to delete user: ' + err.message);
+                    });
+            }
+        }
+
+        function loadUsers() {
+            fetch('backend/users.php?action=list')
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return res.text();
+                })
+                .then(text => {
+                    try {
+                        const users = JSON.parse(text);
+                        const list = document.getElementById('usersList');
+                        list.innerHTML = '';
+
+                        if (users && users.length > 0) {
+                            users.forEach(u => {
+                                list.innerHTML += `<tr>
+                                    <td>${u.username}</td>
+                                    <td>${u.password}</td>
+                                    <td>
+                                        <button onclick="deleteUser(${u.id})" class="btn-modern btn-danger-modern btn-sm">
+                                            <i class="fas fa-trash"></i> Remove
+                                        </button>
+                                    </td>
+                                </tr>`;
+                            });
+                        } else {
+                            list.innerHTML = '<tr><td colspan="3" class="text-center">No users found.</td></tr>';
+                        }
+                    } catch (e) {
+                        console.error('JSON Parse Error in loadUsers:', e);
+                        console.error('Response text:', text);
+                    }
+                })
+                .catch(err => {
+                    console.error('Load users error:', err);
+                });
+        }
+
+        // Utility functions
+        function toggleUserDropdown() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'logout.php';
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (event) {
+            const userMenu = document.querySelector('.user-menu');
+            const dropdown = document.getElementById('userDropdown');
+
+            if (!userMenu.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function (event) {
+            const modals = document.querySelectorAll('.modal-overlay');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Initialize on page load
+        window.onload = function () {
+            loadDashboard();
+            loadUsers();
+        };
+    </script>
+</body>
+
+</html>

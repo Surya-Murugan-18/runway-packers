@@ -1,0 +1,24 @@
+# Enable error reporting for development (remove in production)
+php_flag display_errors on
+php_value error_reporting E_ALL
+
+# Security headers
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
+Header always set X-XSS-Protection "1; mode=block"
+
+# File upload settings
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+php_value max_execution_time 300
+
+# Prevent access to sensitive files
+<Files "config.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Enable CORS for API endpoints (adjust as needed)
+Header add Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Headers "Content-Type"
+Header add Access-Control-Allow-Methods "GET, POST, OPTIONS"

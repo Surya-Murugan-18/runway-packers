@@ -1,0 +1,1535 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Site keywords here">
+    <meta name="description" content="">
+    <meta name='copyright' content=''>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Title -->
+    <title>Track Your Shipment - Runway Packers</title>
+        <link rel="icon" type="image/png" href="img/titlelogo.jpg" style="width: 300px;">
+
+    
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- icofont CSS -->
+    <link rel="stylesheet" href="css/icofont.css">
+    <!-- Slicknav -->
+    <link rel="stylesheet" href="css/slicknav.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="css/owl-carousel.css">
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" href="css/datepicker.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    
+    <!-- Medipro CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- FontAwesome Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" crossorigin="anonymous"></script>
+    
+    <style>
+        /* Enhanced Main Content Styles with Orange Theme */
+        :root {
+    --primary-blue: #17569B; /* Main brand blue */
+    --secondary-blue: #1E6BC4; /* Slightly lighter blue */
+    --accent-blue: #4A90E2; /* Accent shade */
+    --light-blue: #E6F0FA; /* Very light background blue */
+    --dark-blue: #0F3C6E; /* Darker blue for emphasis */
+    --gradient-blue: linear-gradient(135deg, #17569B 0%, #1E6BC4 100%);
+    --gradient-blue-light: linear-gradient(135deg, #E6F0FA 0%, #D6E9FA 100%);
+    
+    --success-green: #4caf50;
+    --danger-red: #f44336;
+    --warning-yellow: #ff9800;
+}
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--gradient-blue-light);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Page Loader */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-blue-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: var(--primary-blue);
+        }
+
+        .loader-spinner {
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(255, 107, 53, 0.2);
+            border-top: 6px solid var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        .loader-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .loader-subtext {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Enhanced Shipment Tracking Section */
+        .shipment-tracking {
+            background: var(--gradient-blue-light);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .shipment-tracking::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.5" fill="%23ff8c42" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+        }
+
+        .shipment-tracking .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .shipment-tracking h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
+        }
+
+        .shipment-tracking p.lead {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tracking-form {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .tracking-container {
+            background: white;
+            border-radius: 25px;
+            padding: 15px;
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .tracking-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(255, 107, 53, 0.25);
+            border-color: var(--accent-blue);
+        }
+
+        .tracking-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tracking-input-wrapper input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 20px 25px;
+            font-size: 18px;
+            border-radius: 20px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .tracking-input-wrapper input:focus {
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .track-btn {
+            background: var(--gradient-blue);
+            border: none;
+            color: white;
+            padding: 20px 35px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .track-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+        }
+
+        .track-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Enhanced Tracking Results */
+        #trackingResult {
+            margin-top: 50px;
+            animation: slideInUp 0.6s ease;
+        }
+
+        .tracking-result-card {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid var(--primary-blue);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tracking-result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-blue);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+            opacity: 0.1;
+        }
+
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .status-title {
+            color: var(--primary-blue);
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .status-badge {
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid;
+        }
+
+        .status-pending {
+            background: #fff3e0;
+            color: var(--warning-yellow);
+            border-color: var(--warning-yellow);
+        }
+
+        .status-picked_up {
+            background: #e3f2fd;
+            color: #1976d2;
+            border-color: #1976d2;
+        }
+
+        .status-in_transit {
+            background: #f3e5f5;
+            color: #7b1fa2;
+            border-color: #7b1fa2;
+        }
+
+        .status-out_for_delivery {
+            background: #fff8e1;
+            color: #f57c00;
+            border-color: #f57c00;
+        }
+
+        .status-delivered {
+            background: #e8f5e8;
+            color: var(--success-green);
+            border-color: var(--success-green);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .info-card:hover {
+            background: var(--light-blue);
+            border-color: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .info-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        /* Enhanced Timeline */
+        .timeline-section {
+            border-top: 2px solid #eee;
+            padding-top: 30px;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-blue);
+            border-radius: 2px;
+        }
+
+        .timeline li {
+            position: relative;
+            padding: 20px 0 20px 80px;
+            margin: 0;
+        }
+
+        .timeline li.completed::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 25px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--success-green);
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--success-green);
+            z-index: 2;
+        }
+
+        .timeline li.current::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 25px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--warning-yellow);
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--warning-yellow);
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+
+        .timeline li.pending::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 25px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ddd;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #ddd;
+            z-index: 2;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .timeline-content.completed {
+            border-left-color: var(--success-green);
+        }
+
+        .timeline-content.current {
+            border-left-color: var(--warning-yellow);
+            background: #fffbf0;
+        }
+
+        .timeline-content.pending {
+            border-left-color: #ddd;
+            opacity: 0.6;
+        }
+
+        .timeline-date {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .timeline-status {
+            font-weight: 700;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .timeline-location {
+            color: #666;
+            font-size: 14px;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 4px var(--warning-yellow);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(255, 152, 0, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 0 4px var(--warning-yellow);
+            }
+        }
+
+        /* POD Section Styles */
+        .pod-section {
+            border-top: 2px solid #eee;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .pod-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pod-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid var(--accent-blue);
+        }
+
+        .pod-image {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .pod-image:hover {
+            transform: scale(1.02);
+        }
+
+        .pod-download-btn {
+            background: var(--gradient-blue);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+            text-decoration: none;
+        }
+
+        .pod-download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .pod-info {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn-refresh {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
+        }
+
+        .btn-refresh:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(108, 117, 125, 0.4);
+            background: #5a6268;
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced How to Track Section */
+        .how-to-track {
+            padding: 100px 0;
+            background: white;
+            position: relative;
+        }
+
+        .how-to-track h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .how-to-track h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-blue);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .step-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            height: 100%;
+            border: 2px solid #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-blue);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(255, 107, 53, 0.15);
+            border-color: var(--accent-orange);
+        }
+
+        .step-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .step-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: white;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .step-card:hover .step-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .step-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Enhanced Support Section */
+        .support-section {
+            background: var(--gradient-blue-light);
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .support-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="support-pattern" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="%23ff8c42" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23support-pattern)"/></svg>');
+        }
+
+        .support-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .support-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .support-item {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+        }
+
+        .support-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.15);
+            border-color: var(--accent-blue);
+        }
+
+        .support-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .support-content h6 {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .support-content p {
+            color: #666;
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .help-card {
+            background: white;
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .help-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-blue);
+            border-radius: 50%;
+            opacity: 0.05;
+            transform: scale(0);
+            transition: transform 0.6s ease;
+        }
+
+        .help-card:hover::before {
+            transform: scale(1);
+        }
+
+        .help-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .help-description {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .contact-support-btn {
+            background: var(--gradient-blue);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .contact-support-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .shipment-tracking h2 {
+                font-size: 2.5rem;
+            }
+            
+            .tracking-input-wrapper {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .track-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .status-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pod-image {
+                max-height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading Runway Packers</div>
+            <div class="loader-subtext">Please wait while we prepare your tracking experience...</div>
+        </div>
+    </div>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
+            <div class="indicator"> 
+                <svg width="16px" height="12px">
+                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <!-- End Preloader -->
+    
+    <!-- Header Area -->
+    <header class="header" >
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-5 col-12">
+                        <!-- Contact -->
+                        <ul class="top-link">
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                        <!-- End Contact -->
+                    </div>
+                    <div class="col-lg-6 col-md-7 col-12">
+                        <!-- Top Contact -->
+                        <ul class="top-contact">
+                                <li><i class="fa fa-phone orange"></i>+91 9176867827, 9789989120</li>
+                                <li><i class="fa fa-envelope"></i><a
+                                    href="runwaypackersandmovers@gmail.com">runwaypackersandmovers@gmail.com</a></li>
+                            </ul>
+                        <!-- End Top Contact -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Topbar -->
+        <header>
+            <!-- Header Inner -->
+            <div class="header-inner">
+                <div class="container">
+                    <div class="inner">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-12">
+                                <!-- Start Logo -->
+                                <div class="logo">
+                                    <a href="index.html"><img src="img/logo.png" alt="Runway Packers"style="height: 60px;"></a>
+                                </div>
+                                <!-- End Logo -->
+                                <!-- Mobile Nav -->
+                                <div class="mobile-nav"></div>
+                                <!-- End Mobile Nav -->
+                            </div>
+                            <div class="col-lg-7 col-md-9 col-12">
+                                <!-- Main Menu -->
+                                <div class="main-menu">
+                                    <nav class="navigation">
+                                        <ul class="nav menu">
+                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="about.html">About Us</a></li>
+                                            <li><a href="service.html">Services</a></li>
+                                            <li><a href="contact.html">Contact Us</a></li>
+											<li><a href="login.html">Admin Login</a></li>
+                                            
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!--/ End Main Menu -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ End Header Inner -->
+        </header>
+        <div class="row mb-3"></div>
+        <!-- Start Shipment Tracking -->
+        <section class="shipment-tracking section">
+    <div class="container">
+        <h2 class="text-center fade-in">Track Your Shipment</h2>
+<p class="text-center lead fade-in">
+    Enter your tracking ID to get real-time updates on your consignment with Runway Packers.
+</p>
+
+        
+        <div class="tracking-form fade-in">
+            <div class="tracking-container">
+                <div class="tracking-input-wrapper">
+                    <input type="text" id="trackingNumber" placeholder="Enter Tracking ID (e.g., RP123456789)">
+                    <button class="track-btn" onclick="trackShipment()" style="background-color:#17569B; color:#fff; border-radius:6px;">
+                        <i class="fas fa-search"></i>
+                        Track Now
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="trackingResult"></div>
+    </div>
+</section>
+
+        
+        <!-- How to Track Shipment Section -->
+        <section class="how-to-track">
+            <div class="container text-center">
+                <h2>How to Track Your Shipment</h2>
+                <p class="section-subtitle">Easily follow these steps to know your consignment status anytime.</p>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="step-card">
+                            <div class="step-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h5 class="step-title">Locate Your Tracking Number</h5>
+                            <p class="step-description">Find your unique tracking number in the shipping confirmation email or receipt you received when booking.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="step-card">
+                            <div class="step-icon">
+                                <i class="fas fa-keyboard"></i>
+                            </div>
+                            <h5 class="step-title">Enter Shipment Details</h5>
+                            <p class="step-description">Enter your tracking number in the search box above and click ‘Track’ to view your shipment status instantly.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="step-card">
+                            <div class="step-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h5 class="step-title">Receive Live Updates</h5>
+                            <p class="step-description">See the full status, current location, and estimated delivery time with real-time updates.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Support Section -->
+        <section class="support-section">
+            <div class="container support-container">
+                <div class="row align-items-center">
+                    <!-- Left Container (Support Details) -->
+                    <div class="col-lg-7 mb-4">
+                        <div class="support-cards-grid">
+                            <div class="support-item">
+                                <div class="support-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="support-content">
+                                    <h6>Email Support</h6>
+                                    <p>runwaypackersand<br>movers@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="support-item">
+                                <div class="support-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="support-content">
+                                    <h6>Phone Support</h6>
+                                    <p>+91 91768 67827</p>
+                                </div>
+                            </div>
+                            
+                            <div class="support-item">
+                                <div class="support-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="support-content">
+                                    <h6>Available Hours</h6>
+                                    <p>24/7 Customer Support</p>
+                                </div>
+                            </div>
+                            
+                            <div class="support-item">
+                                <div class="support-icon">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <div class="support-content">
+                                    <h6>Delivery Support</h6>
+                                    <p>Track shipments easily</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Container (Need Help & Button) -->
+                    <div class="col-lg-5">
+                        <div class="help-card">
+                            <h3 class="help-title">Need Help?</h3>
+                            <p class="help-description">Our customer service team is ready to help you with all your logistics questions and needs.</p>
+                            <button class="contact-support-btn">
+                                <i class="fas fa-headset"></i>
+                                Contact Support
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer Area -->
+<footer id="footer" class="footer">
+    <!-- Footer Top -->
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <!-- About Us -->
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-footer">
+                        <h2>About Us</h2>
+                        <p>Runway Packers & Movers provides reliable and efficient freight, courier, and cargo
+                            services across India.</p>
+                        <!-- Social Media -->
+                        <ul class="social">
+                            <li><a href="#"><i class="icofont-facebook"></i></a></li>
+                            <li>
+                                <a href="https://wa.me/919789989120" target="_blank">
+                                    <i class="icofont-whatsapp"></i>
+                                </a>
+                            </li>
+                            <li><a href="#"><i class="icofont-instagram"></i></a></li>
+                            <li><a href="#"><i class="icofont-linkedin"></i></a></li>
+                        </ul>
+                        <!-- End Social Media -->
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-footer f-link">
+                        <h2>Quick Links</h2>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <ul>
+                                    <li><a href="index.html"><i class="fa fa-caret-right"
+                                                aria-hidden="true"></i>Home</a></li>
+                                    <li><a href="about.html"><i class="fa fa-caret-right"
+                                                aria-hidden="true"></i>About Us</a></li>
+                                    <li><a href="service.html"><i class="fa fa-caret-right"
+                                                aria-hidden="true"></i>Services</a></li>
+                                    <li><a href="contact.html"><i class="fa fa-caret-right"
+                                                aria-hidden="true"></i>Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Us (shifted left) -->
+                <div class="col-lg-3 col-md-6 col-12" style="margin-left: -65px;">
+                    <div class="single-footer">
+                        <h2>Contact Us</h2>
+                        <p><strong>G. Prabu Raj</strong> - BE (Proprietor)</p>
+                        <p>Mob: +91 91768 67827,<br> 97899 89120</p>
+                        <p>Email: <a
+                                href="mailto:runwaypackersandmovers@gmail.com">runwaypackersandmovers<br>@gmail.com</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Our Location (shifted left + 2 addresses) -->
+                <div class="col-lg-3 col-md-6 col-12" style="margin-left: 0px;">
+                    <div class="single-footer">
+                        <h2>Our Location</h2>
+                        <p>11B - Raghavendra Road, Vanashakthi Nagar Extn, Puthagaram, Kolathur, Chennai - 600099</p>
+                        <p>248 - Sai Kudil Ground Floor, 8th Cross Street, Ashok Nagar, Thanjavur - 613005</p>
+                        <a href="https://maps.app.goo.gl/LmF128d3SfCEaFccA" target="_blank" class="btn" style="background-color: rgb(189, 4, 4); 
+          color: white; padding: 10px 20px; border-radius: 5px; display: inline-flex; align-items: center; text-decoration: none; margin-top: 20px;">
+                            <i class="icofont-location-pin" style="margin-right: 8px;"></i> Find Location
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Footer Bottom -->
+    <div class="footer-bottom text-center">
+        <div class="container">
+            <p>&copy; 2025 Runway Packers. All Rights Reserved. Designed by
+                <a href="https://popappz.com/" target="_blank"
+                    style="color: green; text-decoration: none; font-weight: bold;">Pop Appz</a>.
+            </p>
+        </div>
+    </div>
+    <!--/ End Footer Bottom -->
+</footer>
+
+<script>
+    // Page loader
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            document.getElementById('pageLoader').classList.add('hidden');
+        }, 1500);
+    });
+
+    // Main tracking function
+    function trackShipment() {
+        const id = document.getElementById('trackingNumber').value;
+        
+        if (!id.trim()) {
+            alert('Please enter a tracking number');
+            return;
+        }
+
+        // Show loading state
+        const result = document.getElementById('trackingResult');
+        result.innerHTML = `
+            <div class="tracking-result-card">
+                <div style="text-align: center; padding: 40px;">
+                    <div class="loading-spinner"></div>
+                    <p style="margin-top: 20px; color: #666;">Loading tracking information...</p>
+                </div>
+            </div>
+        `;
+
+        fetch(`backend/track.php?id=${encodeURIComponent(id)}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    displayTrackingResult(data);
+                } else {
+                    result.innerHTML = `
+                        <div class="tracking-result-card">
+                            <div style="text-align: center; padding: 40px;">
+                                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ff6b35; margin-bottom: 20px;"></i>
+                                <h3 style="color: #333; margin-bottom: 10px;">Tracking Not Found</h3>
+                                <p style="color: #666;">${data.error || 'No tracking information found for this ID.'}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            })
+            .catch(err => {
+                console.error('Tracking error:', err);
+                result.innerHTML = `
+                    <div class="tracking-result-card">
+                        <div style="text-align: center; padding: 40px;">
+                            <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #f44336; margin-bottom: 20px;"></i>
+                            <h3 style="color: #333; margin-bottom: 10px;">Connection Error</h3>
+                            <p style="color: #666;">Unable to fetch tracking information. Please try again later.</p>
+                        </div>
+                    </div>
+                `;
+            });
+    }
+
+    // Display tracking result with POD support
+    function displayTrackingResult(data) {
+        const { booking, updates, pod } = data;
+        const result = document.getElementById('trackingResult');
+        
+        // Generate timeline
+        let timelineHTML = generateTimeline(booking, updates);
+        
+        // Generate POD section if delivered and POD exists
+        let podHTML = '';
+        if (booking.status === 'delivered' && pod) {
+            podHTML = `
+                <div class="pod-section">
+                    <h4 class="pod-title">
+                        <i class="fas fa-file-image"></i> Proof of Delivery
+                    </h4>
+                    <div class="pod-container">
+                        <div class="pod-info">
+                            <i class="fas fa-info-circle"></i> 
+                            Your package has been successfully delivered. Below is the proof of delivery document.
+                        </div>
+                        ${isImageFile(pod.file_name) ? 
+                            `<img src="backend/serve_pod.php?booking_id=${booking.booking_id}" 
+                                 alt="Proof of Delivery" 
+                                 class="pod-image" 
+                                 onclick="viewFullImage('${booking.booking_id}')"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                             <div style="display: none; padding: 20px; color: #666;">
+                                <i class="fas fa-file-alt" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                                <p>POD Document Available</p>
+                             </div>` :
+                            `<div style="padding: 20px; color: #666;">
+                                <i class="fas fa-file-pdf" style="font-size: 3rem; margin-bottom: 10px; color: #ff6b35;"></i>
+                                <p>POD Document (PDF)</p>
+                             </div>`
+                        }
+                        <a href="backend/serve_pod.php?booking_id=${booking.booking_id}&download=1" 
+                           class="pod-download-btn">
+                            <i class="fas fa-download"></i>
+                            Download POD
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+        
+        let content = `
+            <div class="tracking-result-card">
+                <div class="status-header">
+                    <h3 class="status-title">ID NO: ${booking.booking_id}</h3>
+                    <div class="status-badge status-${booking.status}">
+                        <i class="fas fa-${getStatusIcon(booking.status)}"></i> 
+                        ${getStatusLabel(booking.status)}
+                    </div>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-label">Source</div>
+                        <div class="info-value">${booking.source}</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-flag-checkered"></i>
+                        </div>
+                        <div class="info-label">Destination</div>
+                        <div class="info-value">${booking.destination}</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="info-label">Receiver</div>
+                        <div class="info-value">${booking.receiver_name}</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="info-label">Booking Date</div>
+                        <div class="info-value">${formatDate(booking.booking_date)}</div>
+                    </div>
+                </div>
+                
+                ${timelineHTML}
+                ${podHTML}
+                
+                <div class="action-buttons">
+                    <button class="btn-refresh" onclick="trackShipment()">
+                        <i class="fas fa-sync-alt"></i> Refresh Status
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        result.innerHTML = content;
+    }
+
+    // Check if file is an image
+    function isImageFile(filename) {
+        const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
+        const extension = filename.toLowerCase().substring(filename.lastIndexOf('.'));
+        return imageExtensions.includes(extension);
+    }
+
+    // View full image in new tab
+    function viewFullImage(bookingId) {
+        window.open(`backend/serve_pod.php?booking_id=${bookingId}`, '_blank');
+    }
+
+    // Generate timeline HTML
+    function generateTimeline(order, statusHistory) {
+        const statusFlow = [
+            { key: 'pending', label: 'Order Received', icon: 'plus-circle' },
+            { key: 'picked_up', label: 'Picked Up', icon: 'truck-pickup' },
+            { key: 'in_transit', label: 'In Transit', icon: 'shipping-fast' },
+            { key: 'out_for_delivery', label: 'Out for Delivery', icon: 'truck' },
+            { key: 'delivered', label: 'Delivered', icon: 'check-circle' }
+        ];
+        
+        let timelineHTML = `
+            <div class="timeline-section">
+                <h4 class="timeline-title">
+                    <i class="fas fa-history"></i> Shipment Timeline
+                </h4>
+                <ul class="timeline">
+        `;
+        
+        statusFlow.forEach((step, index) => {
+            let stepClass = 'pending';
+            let stepDate = '';
+            let stepNotes = '';
+            
+            // Check if this step is completed
+            const historyItem = statusHistory.find(h => h.status === step.key);
+            if (historyItem) {
+                stepClass = 'completed';
+                stepDate = formatDateTime(historyItem.status_date + ' ' + historyItem.status_time);
+                stepNotes = historyItem.remarks || '';
+            } else if (order.status === step.key) {
+                stepClass = 'current';
+                stepDate = 'In Progress';
+            }
+            
+            timelineHTML += `
+                <li class="${stepClass}">
+                    <div class="timeline-content ${stepClass}">
+                        <div class="timeline-date">${stepDate}</div>
+                        <div class="timeline-status">${step.label}</div>
+                        <div class="timeline-location">Runway Packers</div>
+                        ${stepNotes ? `<p style="margin: 10px 0 0 0; color: #666; font-size: 14px;">${stepNotes}</p>` : ''}
+                    </div>
+                </li>
+            `;
+        });
+        
+        timelineHTML += `
+                </ul>
+            </div>
+        `;
+        
+        return timelineHTML;
+    }
+
+    // Utility functions
+    function formatDate(dateString) {
+        if (!dateString) return 'N/A';
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-IN', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric'
+        });
+    }
+
+    function formatDateTime(dateTimeString) {
+        if (!dateTimeString) return 'N/A';
+        const date = new Date(dateTimeString);
+        return date.toLocaleDateString('en-IN', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
+    function getStatusLabel(status) {
+        const labels = {
+            'pending': 'Order Received',
+            'picked_up': 'Picked Up',
+            'in_transit': 'In Transit',
+            'out_for_delivery': 'Out for Delivery',
+            'delivered': 'Delivered'
+        };
+        return labels[status] || status.replace('_', ' ').toUpperCase();
+    }
+
+    function getStatusIcon(status) {
+        const icons = {
+            'pending': 'clock',
+            'picked_up': 'truck-pickup',
+            'in_transit': 'shipping-fast',
+            'out_for_delivery': 'truck',
+            'delivered': 'check-circle'
+        };
+        return icons[status] || 'info-circle';
+    }
+
+    // Allow Enter key to trigger tracking
+    document.getElementById("trackingNumber").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            trackShipment();
+        }
+    });
+
+    // Auto-focus on tracking input
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("trackingNumber").focus();
+    });
+</script>
+
+<!-- jquery Min JS -->
+<script src="js/jquery.min.js"></script>
+<!-- jquery Migrate JS -->
+<script src="js/jquery-migrate-3.0.0.js"></script>
+<!-- jquery Ui JS -->
+<script src="js/jquery-ui.min.js"></script>
+<!-- Easing JS -->
+<script src="js/easing.js"></script>
+<!-- Color JS -->
+<script src="js/colors.js"></script>
+<!-- Popper JS -->
+<script src="js/popper.min.js"></script>
+<!-- Bootstrap Datepicker JS -->
+<script src="js/bootstrap-datepicker.js"></script>
+<!-- Jquery Nav JS -->
+<script src="js/jquery.nav.js"></script>
+<!-- Slicknav JS -->
+<script src="js/slicknav.min.js"></script>
+<!-- ScrollUp JS -->
+<script src="js/jquery.scrollUp.min.js"></script>
+<!-- Niceselect JS -->
+<script src="js/niceselect.js"></script>
+<!-- Tilt Jquery JS -->
+<script src="js/tilt.jquery.min.js"></script>
+<!-- Owl Carousel JS -->
+<script src="js/owl-carousel.js"></script>
+<!-- counterup JS -->
+<script src="js/jquery.counterup.min.js"></script>
+<!-- Steller JS -->
+<script src="js/steller.js"></script>
+<!-- Wow JS -->
+<script src="js/wow.min.js"></script>
+<!-- Magnific Popup JS -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<!-- Counter Up CDN JS -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Main JS -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
