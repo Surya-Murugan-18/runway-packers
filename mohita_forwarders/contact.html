@@ -81,7 +81,7 @@
                     <div class="col-lg-6 col-md-5 col-12">
                         <!-- Contact -->
                         <ul class="top-link">
-                            <li><a href="#">FAQ</a></li>
+                            
                         </ul>
                         <!-- End Contact -->
                     </div>
@@ -98,64 +98,108 @@
             </div>
         </div>
         <!-- End Topbar -->
-        <header>
-            <!-- Header Inner -->
-            <div class="header-inner">
-                <div class="container">
-                    <div class="inner">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-3 col-12">
-                                <!-- Start Logo -->
-                                <div class="logo">
-                                    <a href="index.html"><img src="img/logo.png" alt="Runway Packers"style="height: 60px;"></a>
-                                </div>
-                                <!-- End Logo -->
-                                <!-- Mobile Nav -->
-                                <div class="mobile-nav"></div>
-                                <!-- End Mobile Nav -->
-                            </div>
-                            <div class="col-lg-7 col-md-9 col-12">
-                                <!-- Main Menu -->
-                                <div class="main-menu">
-                                    <nav class="navigation">
-                                        <ul class="nav menu">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="about.html">About Us</a></li>
-                                            <li><a href="service.html">Services</a></li>
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                            <li><a href="login.html">Admin Login</a></li>
-                                            <li class="d-block d-lg-none text-center">
-                                                <a href="tracking.html" class="btn"
-                                                    style="background-color: #17569B; color: #fff; font-weight: 600; border-radius: 50px; padding: 10px 25px;">
-                                                    Track Shipment
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <!--/ End Main Menu -->
-                            </div>
-                            <div class="col-lg-2 col-12">
-                                <div class="get-quote">
-                                    <a href="tracking.html" class="btn"style="background-color: #17569B;">Track Shipment</a>
-                                </div>
-                            </div>
+        			<header>
+    <!-- Header Inner -->
+    <div class="header-inner">
+        <div class="container">
+            <div class="inner">
+                <div class="row align-items-center">
+                    <!-- Logo -->
+                    <div class="col-lg-3 col-md-3 col-12">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="img/logo.png" alt="Runway Packers" style="height: 60px;">
+                            </a>
+                        </div>
+                        <div class="mobile-nav"></div>
+                    </div>
+
+                    <!-- Main Menu -->
+                    <div class="col-lg-7 col-md-9 col-12">
+                        <div class="main-menu">
+                            <nav class="navigation">
+                                <ul class="nav menu">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li ><a href="about.html">About Us</a></li>
+                                    <li><a href="service.html">Services</a></li>
+                                    <li class="active"><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="login.html">Admin Login</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+
+                                    <!-- Mobile Only Track Button -->
+                                    <li class="d-block d-lg-none text-center mt-2">
+                                        <a href="tracking.html" class="btn track-btn">
+                                            Track Shipment
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Track Shipment Button -->
+                    <div class="col-lg-2 col-12 text-end">
+                        <div class="get-quote">
+                            <a href="tracking.html" class="btn track-btn">
+                               Track Shipment
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--/ End Header Inner -->
-        </header>
-        <style>
-                .get-quote{
-                    margin-bottom: 30px;
-                }
-            </style>
+        </div>
+    </div>
+    <!--/ End Header Inner -->
+</header>
+
+<style>
+/* Force menu items to stay in one row */
+.header .main-menu .nav.menu {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Prevent breaking of menu text */
+.header .nav.menu li a {
+    white-space: nowrap;
+    padding: 25px 10px;
+}
+
+/* Optional: reduce spacing for smaller screens */
+@media (max-width: 1200px) {
+    .header .nav.menu li a {
+        padding: 20px 8px;
+    }
+}
+
+/* Track Shipment Button Fix */
+.track-btn {
+    background-color: #17569B !important;
+    color: #fff !important;
+    border-radius: 50px !important;
+    padding: 10px 25px !important;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Remove hover underline and keep background */
+.track-btn::before {
+    content: none !important;
+}
+
+.track-btn:hover {
+    background-color: #17569B !important;
+    color: #fff !important;
+    border-radius: 50px !important;
+}
+</style>
             
 
 
         <!-- Breadcrumbs -->
-        <div class="breadcrumbs overlay" style="background: url('img/header-3.jpg') no-repeat center center/cover;">
+        <div class="breadcrumbs overlay" style="background: url('img/header-3.jpg') no-repeat center center/cover;margin-top: 10px;">
             <div class="container">
                 <div class="bread-inner">
                     <div class="row">
@@ -301,8 +345,12 @@
                                     <i class="icofont-whatsapp"></i>
                                 </a>
                             </li>
-                            <li><a href="#"><i class="icofont-instagram"></i></a></li>
-                            <li><a href="#"><i class="icofont-linkedin"></i></a></li>
+                             <li>
+        <a href="tel:+919176867827">
+            <i class="icofont-ui-call"></i>
+        </a>
+    </li>
+                            
                         </ul>
                         <!-- End Social Media -->
                     </div>
@@ -330,11 +378,11 @@
                 </div>
 
                 <!-- Contact Us (shifted left) -->
-                <div class="col-lg-3 col-md-6 col-12" style="margin-left: -65px;">
+                <div class="col-lg-3 col-md-6 col-12" style="margin-left: 0px;">
                     <div class="single-footer">
                         <h2>Contact Us</h2>
-                        <p><strong>G. Prabu Raj</strong> - BE (Proprietor)</p>
-                        <p>Mob: +91 91768 67827,<br> 97899 89120</p>
+                       
+                         <p>Mob: +91 91768 67827,<br>9789989120</p>
                         <p>Email: <a
                                 href="mailto:runwaypackersandmovers@gmail.com">runwaypackersandmovers<br>@gmail.com</a>
                         </p>

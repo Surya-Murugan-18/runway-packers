@@ -354,6 +354,10 @@ body{
 	-moz-transition:all 0.4s ease;
 	transition:all 0.4s ease;
 }
+.header .nav li a.btn::before {
+    display: none !important;
+}
+
 .header .nav li.active a:before{
 	opacity:1;
 	visibility:visible;
@@ -362,6 +366,11 @@ body{
 .header .nav li.active a{
 	color:#17569B;
 }
+.header .nav li .btn {
+    margin-top: 16px;
+    display: inline-block;
+}
+
 .header .nav li:hover a:before{
 	opacity:1;
 	width: 100%;
@@ -597,7 +606,7 @@ body{
 	background-position: center;
 	background-repeat:no-repeat;
 	 background-color: rgba(142, 184, 230, 0.6); /* lightens the image */
-    background-blend-mode: luminosity; /* blends the color with image */
+    background-blend-mode:luminosity; /* blends the color with image */
 }
 .slider .single-slider .text{
 	margin-top:120px;
@@ -641,9 +650,11 @@ body{
 	color:#4c96e6;
 }
 .slider .single-slider p {
-	color: #ffffff;
-	margin-top: 27px;
-	font-weight: 400;
+    color: #ffffff; /* White text for maximum contrast against overlay */
+    margin-top: 20px;
+    font-weight: 500; /* slightly bolder for visibility */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* subtle shadow for readability */
+    line-height: 1.6;
 }
 .slider .single-slider .button{
 	margin-top:30px;
