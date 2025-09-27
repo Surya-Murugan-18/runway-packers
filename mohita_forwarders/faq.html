@@ -48,6 +48,106 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
 
+
+
+<style>
+        /* Floating Contact Buttons */
+        .floating-contact-buttons {
+            position: fixed;
+            right: 20px;
+            top: 52%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .phone-btn {
+            background-color: #17569B;
+            color: white;
+        }
+
+        .phone-btn:hover {
+            background-color: #134a85;
+            color: white;
+            transform: scale(1.1);
+            text-decoration: none;
+        }
+
+        .whatsapp-btn {
+            background-color: white;
+            color: #17569B;
+            border: 2px solid #17569B;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #17569B;
+            color: white;
+            transform: scale(1.1);
+            text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(23, 86, 155, 0.4);
+            }
+            100% {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .floating-contact-buttons {
+                right: 15px;
+            }
+
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        /* Remove extra top padding only on mobile */
+        @media (max-width: 767px) {
+            .features.section {
+                padding-top: 50px !important;
+                /* adjust as needed */
+            }
+
+            .single-feature {
+                margin-bottom: 30px;
+                /* adjust gap as needed */
+            }
+        }
+
+        /* Remove extra top space in mobile only */
+        @media (max-width: 767px) {
+            #fun-facts {
+                padding-top: 30px !important;
+                /* reduce space */
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -619,6 +719,19 @@
     </div>
     <!--/ End Footer Bottom -->
 </footer>
+
+
+<div class="floating-contact-buttons">
+            <!-- Phone Button -->
+            <a href="tel:+919176867827" class="floating-btn phone-btn" title="Call Us">
+                <i class="fa fa-phone"></i>
+            </a>
+            
+            <!-- WhatsApp Button -->
+            <a href="https://wa.me/919789989120" target="_blank" class="floating-btn whatsapp-btn" title="WhatsApp Us">
+                <i class="fa fa-whatsapp"></i>
+            </a>
+        </div>
 
 <script>
         function toggleFAQ(element) {

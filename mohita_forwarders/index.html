@@ -46,6 +46,104 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
 
+    <style>
+        /* Floating Contact Buttons */
+        .floating-contact-buttons {
+            position: fixed;
+            right: 20px;
+            top: 52%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .phone-btn {
+            background-color: #17569B;
+            color: white;
+        }
+
+        .phone-btn:hover {
+            background-color: #134a85;
+            color: white;
+            transform: scale(1.1);
+            text-decoration: none;
+        }
+
+        .whatsapp-btn {
+            background-color: white;
+            color: #17569B;
+            border: 2px solid #17569B;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #17569B;
+            color: white;
+            transform: scale(1.1);
+            text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(23, 86, 155, 0.4);
+            }
+            100% {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .floating-contact-buttons {
+                right: 15px;
+            }
+
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        /* Remove extra top padding only on mobile */
+        @media (max-width: 767px) {
+            .features.section {
+                padding-top: 50px !important;
+                /* adjust as needed */
+            }
+
+            .single-feature {
+                margin-bottom: 30px;
+                /* adjust gap as needed */
+            }
+        }
+
+        /* Remove extra top space in mobile only */
+        @media (max-width: 767px) {
+            #fun-facts {
+                padding-top: 30px !important;
+                /* reduce space */
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -136,11 +234,6 @@
     <!--/ End Header Inner -->
 </header>
 
-
-
-
-
-
         <!-- Slider Area -->
         <section class="slider" style="padding-top: 10px;">
             <div class="hero-slider">
@@ -220,9 +313,6 @@
             </div>
         </section>
         <!--/ End Slider Area -->
-
-
-
 
         <section class="schedule" style="padding-top: 60px;">
             <div class="container">
@@ -353,10 +443,6 @@
             </div>
         </section>
 
-        </section>
-
-
-
         <!-- Start Features -->
         <section class="features section" style="padding-top: 690px;">
             <div class="container">
@@ -414,22 +500,6 @@
             </div>
         </section>
         <!--/ End Features -->
-        <style>
-            /* Remove extra top padding only on mobile */
-            @media (max-width: 767px) {
-                .features.section {
-                    padding-top: 50px !important;
-                    /* adjust as needed */
-                }
-
-                .single-feature {
-                    margin-bottom: 30px;
-                    /* adjust gap as needed */
-                }
-            }
-        </style>
-
-
 
         <!-- Start Fun-facts -->
         <div id="fun-facts" class="fun-facts section overlay"
@@ -487,18 +557,7 @@
                 </div>
             </div>
         </div>
-        <style>
-            /* Remove extra top space in mobile only */
-            @media (max-width: 767px) {
-                #fun-facts {
-                    padding-top: 30px !important;
-                    /* reduce space */
-                }
-            }
-        </style>
-
         <!--/ End Fun-facts -->
-
 
         <!-- Start Why Choose Us -->
         <section class="why-choose section"
@@ -554,8 +613,6 @@
         </section>
         <!--/ End Why Choose Us -->
 
-
-
         <!-- Start Call to Action -->
         <section class="call-action overlay"
             style="position: relative; background: url('img/call-action-bg.jpg') no-repeat center center/cover;">
@@ -587,7 +644,6 @@
 
         <!--/ End Call to Action -->
 
-        <!--/ End Call to Action -->
         <!-- Start Our Services -->
         <section class="services section">
             <div class="container">
@@ -630,7 +686,6 @@
                         </div>
                     </div>
 
-
                     <!-- Vehicle Transportation -->
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="single-service text-center">
@@ -664,36 +719,10 @@
                 </div>
             </div>
         </section>
-        <style>
-            /* Reduce bottom spacing for the services section */
-            .services.section {
-                padding-bottom: 30px;
-                /* Adjust as needed */
-                margin-bottom: 0;
-                /* Remove extra margin */
-            }
-
-            /* Optional: reduce spacing between rows */
-            .services.section .row {
-                margin-bottom: 0;
-            }
-
-            .services.section .single-service {
-                margin-bottom: 20px;
-                /* space between cards */
-            }
-        </style>
         <!--/ End Runway Packers Services -->
-
 
         <!-- Pricing Table -->
         
-
-
-
-
-
-
 
         <!-- Start Booking -->
         <section class="booking section" style="background-color: #f9f9f9; padding: 60px 0;">
@@ -738,7 +767,6 @@
         </section>
         <!-- End Booking -->
 
-
         <!-- Start Newsletter Area -->
         <section class="newsletter section">
             <div class="container">
@@ -770,97 +798,108 @@
         <!-- /End Newsletter Area -->
 
         <!-- Footer Area -->
-<footer id="footer" class="footer">
-    <!-- Footer Top -->
-    <div class="footer-top">
-        <div class="container">
-            <div class="row">
-                <!-- About Us -->
-                <div class="col-lg-3 col-md-6 col-12">
-                    <div class="single-footer">
-                        <h2>About Us</h2>
-                        <p>Runway Packers & Movers provides reliable and efficient freight, courier, and cargo
-                            services across India.</p>
-                        <!-- Social Media -->
-                        <ul class="social">
-                            <li><a href="#"><i class="icofont-facebook"></i></a></li>
-                            <li>
-                                <a href="https://wa.me/919789989120" target="_blank">
-                                    <i class="icofont-whatsapp"></i>
-                                </a>
-                            </li>
-                             <li>
-        <a href="tel:+919176867827">
-            <i class="icofont-ui-call"></i>
-        </a>
-    </li>
-                            
-                        </ul>
-                        <!-- End Social Media -->
-                    </div>
-                </div>
-
-                <!-- Quick Links -->
-                <div class="col-lg-3 col-md-6 col-12">
-                    <div class="single-footer f-link">
-                        <h2>Quick Links</h2>
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-12">
-                                <ul>
-                                    <li><a href="index.html"><i class="fa fa-caret-right"
-                                                aria-hidden="true"></i>Home</a></li>
-                                    <li><a href="about.html"><i class="fa fa-caret-right"
-                                                aria-hidden="true"></i>About Us</a></li>
-                                    <li><a href="service.html"><i class="fa fa-caret-right"
-                                                aria-hidden="true"></i>Services</a></li>
-                                    <li><a href="contact.html"><i class="fa fa-caret-right"
-                                                aria-hidden="true"></i>Contact</a></li>
+        <footer id="footer" class="footer">
+            <!-- Footer Top -->
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <!-- About Us -->
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-footer">
+                                <h2>About Us</h2>
+                                <p>Runway Packers & Movers provides reliable and efficient freight, courier, and cargo
+                                    services across India.</p>
+                                <!-- Social Media -->
+                                <ul class="social">
+                                    <li><a href="#"><i class="icofont-facebook"></i></a></li>
+                                    <li>
+                                        <a href="https://wa.me/919789989120" target="_blank">
+                                            <i class="icofont-whatsapp"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="tel:+919176867827">
+                                            <i class="icofont-ui-call"></i>
+                                        </a>
+                                    </li>
                                 </ul>
+                                <!-- End Social Media -->
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Contact Us (shifted left) -->
-                <div class="col-lg-3 col-md-6 col-12" style="margin-left: 0px;">
-                    <div class="single-footer">
-                        <h2>Contact Us</h2>
-                        
-                        <p>Mob: +91 91768 67827,<br>9789989120</p>
-                        <p>Email: <a
-                                href="mailto:runwaypackersandmovers@gmail.com">runwaypackersandmovers<br>@gmail.com</a>
-                        </p>
-                    </div>
-                </div>
+                        <!-- Quick Links -->
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-footer f-link">
+                                <h2>Quick Links</h2>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <ul>
+                                            <li><a href="index.html"><i class="fa fa-caret-right"
+                                                        aria-hidden="true"></i>Home</a></li>
+                                            <li><a href="about.html"><i class="fa fa-caret-right"
+                                                        aria-hidden="true"></i>About Us</a></li>
+                                            <li><a href="service.html"><i class="fa fa-caret-right"
+                                                        aria-hidden="true"></i>Services</a></li>
+                                            <li><a href="contact.html"><i class="fa fa-caret-right"
+                                                        aria-hidden="true"></i>Contact</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                <!-- Our Location (shifted left + 2 addresses) -->
-                <div class="col-lg-3 col-md-6 col-12" style="margin-left: 0px;">
-                    <div class="single-footer">
-                        <h2>Our Location</h2>
-                        <p>11B - Raghavendra Road, Vanashakthi Nagar Extn, Puthagaram, Kolathur, Chennai - 600099</p>
-                        <p>248 - Sai Kudil Ground Floor, 8th Cross Street, Ashok Nagar, Thanjavur - 613005</p>
-                        <a href="https://maps.app.goo.gl/LmF128d3SfCEaFccA" target="_blank" class="btn" style="background-color: rgb(189, 4, 4); 
+                        <!-- Contact Us (shifted left) -->
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-left: 0px;">
+                            <div class="single-footer">
+                                <h2>Contact Us</h2>
+                                
+                                <p>Mob: +91 91768 67827,<br>9789989120</p>
+                                <p>Email: <a
+                                        href="mailto:runwaypackersandmovers@gmail.com">runwaypackersandmovers<br>@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Our Location (shifted left + 2 addresses) -->
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-left: 0px;">
+                            <div class="single-footer">
+                                <h2>Our Location</h2>
+                                <p>11B - Raghavendra Road, Vanashakthi Nagar Extn, Puthagaram, Kolathur, Chennai - 600099</p>
+                                <p>248 - Sai Kudil Ground Floor, 8th Cross Street, Ashok Nagar, Thanjavur - 613005</p>
+                                <a href="https://maps.app.goo.gl/LmF128d3SfCEaFccA" target="_blank" class="btn" style="background-color: rgb(189, 4, 4); 
           color: white; padding: 10px 20px; border-radius: 5px; display: inline-flex; align-items: center; text-decoration: none; margin-top: 20px;">
-                            <i class="icofont-location-pin" style="margin-right: 8px;"></i> Find Location
-                        </a>
+                                    <i class="icofont-location-pin" style="margin-right: 8px;"></i> Find Location
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
             </div>
-        </div>
-    </div>
-    <!-- Footer Bottom -->
-    <div class="footer-bottom text-center">
-        <div class="container">
-            <p>&copy; 2025 Runway Packers. All Rights Reserved. Designed by
-                <a href="https://popappz.com/" target="_blank"
-                    style="color: green; text-decoration: none; font-weight: bold;">Pop Appz</a>.
-            </p>
-        </div>
-    </div>
-    <!--/ End Footer Bottom -->
-</footer>
+            <!-- Footer Bottom -->
+            <div class="footer-bottom text-center">
+                <div class="container">
+                    <p>&copy; 2025 Runway Packers. All Rights Reserved. Designed by
+                        <a href="https://popappz.com/" target="_blank"
+                            style="color: green; text-decoration: none; font-weight: bold;">Pop Appz</a>.
+                    </p>
+                </div>
+            </div>
+            <!--/ End Footer Bottom -->
+        </footer>
 
+        <!-- Floating Contact Buttons -->
+        <div class="floating-contact-buttons">
+            <!-- Phone Button -->
+            <a href="tel:+919176867827" class="floating-btn phone-btn" title="Call Us">
+                <i class="fa fa-phone"></i>
+            </a>
+            
+            <!-- WhatsApp Button -->
+            <a href="https://wa.me/919789989120" target="_blank" class="floating-btn whatsapp-btn" title="WhatsApp Us">
+                <i class="fa fa-whatsapp"></i>
+            </a>
+        </div>
 
         <!-- jquery Min JS -->
         <script src="js/jquery.min.js"></script>
