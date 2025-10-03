@@ -311,7 +311,7 @@ body{
 }
 .header .logo {
 	float: left;
-	margin-top: 18px;
+	margin-top: 20px;
 }
 .header .navbar {
 	background: none;
@@ -671,7 +671,7 @@ body{
 	margin:0;
 }
 .slider .single-slider .btn.primary{
-	background:#2C2D3F;
+	background:#419ec9;
 	color:#fff;
 }
 .slider .single-slider .btn.primary:before{
